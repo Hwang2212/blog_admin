@@ -1,3 +1,4 @@
+import 'package:arrivo_web/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:arrivo_web/theme/theme.dart';
 
@@ -6,6 +7,7 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Drawer(
       child: ListView(
         children: [
@@ -15,7 +17,21 @@ class AppDrawer extends StatelessWidget {
                   borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(12),
                       bottomRight: Radius.circular(12))),
-              child: Text("Menu")),
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const CircleAvatar(
+                      child: Icon(Icons.people),
+                    ),
+                    Text(
+                      'Admin',
+                      style: textTheme.bodyMedium
+                          ?.copyWith(color: AppColors.white),
+                    )
+                  ],
+                ),
+              )),
           ListTile(
             // shape: RoundedRectangleBorder(),
             hoverColor: AppColors.primary,

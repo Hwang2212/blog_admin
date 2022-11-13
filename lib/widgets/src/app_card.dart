@@ -4,7 +4,9 @@ import 'package:arrivo_web/theme/theme.dart';
 class AppCard extends StatelessWidget {
   final String title;
   final Widget child;
-  const AppCard({super.key, required this.title, required this.child});
+  final List<Widget>? actionList;
+  const AppCard(
+      {super.key, required this.title, required this.child, this.actionList});
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +16,17 @@ class AppCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(AppPadding.p10),
-            child: Text(
-              title,
-              style: textTheme.bodyLarge,
+            padding: const EdgeInsets.symmetric(
+                horizontal: AppPadding.p10, vertical: AppPadding.p5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: textTheme.bodyLarge,
+                ),
+                ...?actionList
+              ],
             ),
           ),
           const Divider(),

@@ -1,5 +1,6 @@
 import 'package:arrivo_web/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:arrivo_web/widgets/widgets.dart';
 
 import '../../widgets/widgets.dart';
 
@@ -17,7 +18,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const AppDrawer(),
-      appBar: AppBar(title: Text('Arrivo Admin')),
+      appBar: AppBar(
+          title: Row(
+        children: [
+          //Add Logo here
+          Text('Arrivo Admin'),
+        ],
+      )),
       body: Stack(
         children: [
           titleText(),
@@ -44,11 +51,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildMainContent() {
     return Container(
       margin: EdgeInsets.symmetric(
-          vertical: AppMargin.m80, horizontal: AppMargin.m30),
+          vertical: AppMargin.m100, horizontal: AppMargin.m30),
       child: Column(
         children: [
           AppCard(
             title: 'Users',
+            actionList: [
+              AppElevatedButton(
+                onPressed: () {},
+                child: const Icon(Icons.add_box_outlined),
+              )
+            ],
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

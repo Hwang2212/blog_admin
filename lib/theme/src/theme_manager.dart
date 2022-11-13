@@ -44,10 +44,14 @@ ThemeData getAppTheme(TextTheme textTheme) {
           style: ElevatedButton.styleFrom(
               textStyle: getRegularStyle(color: AppColors.white),
               backgroundColor: AppColors.primary,
+              disabledBackgroundColor: AppColors.grey,
+              minimumSize: Size(20, 50),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppSize.s12)))),
       //DataTable Theme
-      dataTableTheme: DataTableThemeData(dataTextStyle: textTheme.labelSmall),
+      dataTableTheme: DataTableThemeData(
+          headingTextStyle: textTheme.bodyMedium,
+          dataTextStyle: textTheme.labelSmall),
 
       // Text Theme
       textTheme: textTheme

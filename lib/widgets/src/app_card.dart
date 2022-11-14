@@ -12,6 +12,7 @@ class AppCard extends StatelessWidget {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     return Card(
+      margin: EdgeInsets.only(top: AppMargin.m20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

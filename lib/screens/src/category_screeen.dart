@@ -5,16 +5,15 @@ import 'package:arrivo_web/widgets/widgets.dart';
 
 import '../../widgets/widgets.dart';
 
-class UserScreen extends StatefulWidget {
-  const UserScreen({super.key});
+class CategoryScreen extends StatefulWidget {
+  const CategoryScreen({super.key});
 
   @override
-  State<UserScreen> createState() => _UserScreenState();
+  State<CategoryScreen> createState() => _CategoryScreenState();
 }
 
-class _UserScreenState extends State<UserScreen> {
+class _CategoryScreenState extends State<CategoryScreen> {
   TextTheme get textTheme => Theme.of(context).textTheme;
-  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +37,7 @@ class _UserScreenState extends State<UserScreen> {
       child: Row(
         children: [
           Text(
-            'Users',
+            'Categories',
             style: textTheme.headlineLarge,
           )
         ],
@@ -53,7 +52,7 @@ class _UserScreenState extends State<UserScreen> {
       child: Column(
         children: [
           AppCard(
-            title: 'Users',
+            title: 'Category',
             actionList: [
               Row(
                 children: [
@@ -72,38 +71,37 @@ class _UserScreenState extends State<UserScreen> {
                 ],
               ),
             ],
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      '20',
-                      style: textTheme.bodyLarge
-                          ?.copyWith(color: AppColors.primary),
-                    ),
-                    Text(
-                      'Normal',
-                      style: textTheme.bodyMedium
-                          ?.copyWith(color: AppColors.primary),
-                    )
+            child: Center(
+              child: ClipRRect(
+                child: DataTable(
+                  columns: categoryColumnHeaders
+                      .map((e) => DataColumn(label: Text(e)))
+                      .toList(),
+                  rows: const [
+                    DataRow(cells: [
+                      DataCell(Text('1')),
+                      DataCell(Text('Title 1')),
+                      DataCell(Text('1')),
+                      DataCell(Text('1')),
+                      DataCell(Text('Button')),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text('2')),
+                      DataCell(Text('Title 2')),
+                      DataCell(Text('2')),
+                      DataCell(Text('2')),
+                      DataCell(Text('Button')),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text('1')),
+                      DataCell(Text('Title 1')),
+                      DataCell(Text('1')),
+                      DataCell(Text('1')),
+                      DataCell(Text('Button')),
+                    ]),
                   ],
                 ),
-                Column(
-                  children: [
-                    Text(
-                      '15',
-                      style: textTheme.bodyLarge
-                          ?.copyWith(color: AppColors.yellow),
-                    ),
-                    Text(
-                      'Premium',
-                      style: textTheme.bodyMedium
-                          ?.copyWith(color: AppColors.yellow),
-                    )
-                  ],
-                ),
-              ],
+              ),
             ),
           ),
         ],

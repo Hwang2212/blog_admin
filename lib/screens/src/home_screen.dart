@@ -1,4 +1,5 @@
 import 'package:arrivo_web/theme/theme.dart';
+import 'package:arrivo_web/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:arrivo_web/widgets/widgets.dart';
 
@@ -13,23 +14,20 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   TextTheme get textTheme => Theme.of(context).textTheme;
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const AppDrawer(),
-      appBar: AppBar(
-          title: Row(
-        children: [
-          //Add Logo here
-          Text('Arrivo Admin'),
-        ],
-      )),
-      body: Stack(
-        children: [
-          titleText(),
-          buildMainContent(),
-        ],
+      // drawer: const AppDrawer(),
+
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            titleText(),
+            buildMainContent(),
+          ],
+        ),
       ),
     );
   }
@@ -57,10 +55,22 @@ class _HomeScreenState extends State<HomeScreen> {
           AppCard(
             title: 'Users',
             actionList: [
-              AppElevatedButton(
-                onPressed: () {},
-                child: const Icon(Icons.add_box_outlined),
-              )
+              Row(
+                children: [
+                  AppElevatedButton(
+                    onPressed: () {},
+                    child: const Icon(Icons.add_box_outlined),
+                  ),
+                  SizedBox(
+                    width: AppMargin.m10,
+                  ),
+                  AppElevatedButton(
+                    onPressed: () {},
+                    buttonColor: AppColors.yellow,
+                    child: const Icon(Icons.remove_red_eye_outlined),
+                  ),
+                ],
+              ),
             ],
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -98,41 +108,107 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           AppCard(
             title: 'Post',
+            actionList: [
+              Row(
+                children: [
+                  AppElevatedButton(
+                    onPressed: () {},
+                    child: const Icon(Icons.add_box_outlined),
+                  ),
+                  SizedBox(
+                    width: AppMargin.m10,
+                  ),
+                  AppElevatedButton(
+                    onPressed: () {},
+                    buttonColor: AppColors.yellow,
+                    child: const Icon(Icons.remove_red_eye_outlined),
+                  ),
+                ],
+              ),
+            ],
             child: Center(
               child: ClipRRect(
                 child: DataTable(
-                  columns: const [
-                    DataColumn(label: Text('ID')),
-                    DataColumn(label: Text('Post Image')),
-                    DataColumn(label: Text('Title')),
-                    DataColumn(label: Text('Category ID')),
-                    DataColumn(label: Text('Status')),
-                    DataColumn(label: Text('Label')),
-                  ],
+                  columns: postColumnHeaders
+                      .map((e) => DataColumn(label: Text(e)))
+                      .toList(),
                   rows: const [
                     DataRow(cells: [
                       DataCell(Text('1')),
-                      DataCell(Text('Image')),
                       DataCell(Text('Title 1')),
                       DataCell(Text('1')),
                       DataCell(Text('1')),
                       DataCell(Text('Normal')),
+                      DataCell(Text('Button')),
                     ]),
                     DataRow(cells: [
                       DataCell(Text('2')),
-                      DataCell(Text('Image 2')),
                       DataCell(Text('Title 2')),
                       DataCell(Text('2')),
                       DataCell(Text('2')),
                       DataCell(Text('Normal')),
+                      DataCell(Text('Button')),
                     ]),
                     DataRow(cells: [
                       DataCell(Text('1')),
-                      DataCell(Text('Image')),
                       DataCell(Text('Title 1')),
                       DataCell(Text('1')),
                       DataCell(Text('1')),
                       DataCell(Text('Normal')),
+                      DataCell(Text('Button')),
+                    ]),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          AppCard(
+            title: 'Category',
+            actionList: [
+              Row(
+                children: [
+                  AppElevatedButton(
+                    onPressed: () {},
+                    child: const Icon(Icons.add_box_outlined),
+                  ),
+                  SizedBox(
+                    width: AppMargin.m10,
+                  ),
+                  AppElevatedButton(
+                    onPressed: () {},
+                    buttonColor: AppColors.yellow,
+                    child: const Icon(Icons.remove_red_eye_outlined),
+                  ),
+                ],
+              ),
+            ],
+            child: Center(
+              child: ClipRRect(
+                child: DataTable(
+                  columns: categoryColumnHeaders
+                      .map((e) => DataColumn(label: Text(e)))
+                      .toList(),
+                  rows: const [
+                    DataRow(cells: [
+                      DataCell(Text('1')),
+                      DataCell(Text('Title 1')),
+                      DataCell(Text('1')),
+                      DataCell(Text('1')),
+                      DataCell(Text('Button')),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text('2')),
+                      DataCell(Text('Title 2')),
+                      DataCell(Text('2')),
+                      DataCell(Text('2')),
+                      DataCell(Text('Button')),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text('1')),
+                      DataCell(Text('Title 1')),
+                      DataCell(Text('1')),
+                      DataCell(Text('1')),
+                      DataCell(Text('Button')),
                     ]),
                   ],
                 ),

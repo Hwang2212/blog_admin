@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:arrivo_web/utils/src/route_generator.dart';
-import 'generated/locale_keys.g.dart';
 
 import 'package:arrivo_web/theme/theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +12,7 @@ void main() async {
       child: MyApp(),
       supportedLocales: [Locale('en', 'US')],
       fallbackLocale: Locale('en', 'US'),
-      path: 'assets/translations'));
+      path: '/translations'));
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    MaterialApp app = MaterialApp(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
@@ -28,5 +28,6 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       onGenerateRoute: RouteGenerator.onGenerateRoute,
     );
+    return app;
   }
 }

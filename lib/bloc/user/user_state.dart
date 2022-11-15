@@ -1,19 +1,19 @@
-part of 'user_bloc.dart';
+// part of 'user_bloc.dart';
 
-abstract class UserState extends Equatable {
-  const UserState();
+// abstract class UserState extends Equatable {
+//   const UserState();
 
-  @override
-  UserModel get props => UserModel();
-}
+//   @override
+//   UserModel get props => UserModel();
+// }
 
-class UserInitial extends UserState {}
+// class UserInitial extends UserState {}
 
-class UserLoaded extends UserState {
-  final UserModel userModel;
+// class UserLoaded extends UserState {
+//   final UserModel userModel;
 
-  const UserLoaded({required this.userModel});
+//   const UserLoaded({required this.userModel});
 
-  @override
-  UserModel get props => userModel;
-}
+//   @override
+//   UserModel get props => userModel;
+// }

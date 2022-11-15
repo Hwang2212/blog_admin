@@ -1,3 +1,4 @@
+import 'package:arrivo_web/bloc/auth/auth_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:arrivo_web/utils/src/route_generator.dart';
@@ -28,6 +29,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       onGenerateRoute: RouteGenerator.onGenerateRoute,
     );
-    return app;
+    return MultiBlocProvider(
+        providers: [BlocProvider<AuthBloc>(create: (context) => AuthBloc())],
+        child: app);
   }
 }

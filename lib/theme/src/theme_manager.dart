@@ -26,17 +26,17 @@ ThemeData getAppTheme(TextTheme textTheme) {
 
       // AppBar
       appBarTheme: AppBarTheme(
-          iconTheme: IconThemeData(color: AppColors.primary),
+          iconTheme: const IconThemeData(color: AppColors.primary),
           color: AppColors.white,
           elevation: AppSize.s3,
           shadowColor: AppColors.extraLightPrimary,
           titleTextStyle:
               getRegularStyle(color: AppColors.black, fontSize: FontSize.s16)),
-      drawerTheme: DrawerThemeData(),
+      drawerTheme: const DrawerThemeData(),
 
       // Button Theme
-      buttonTheme: ButtonThemeData(
-          shape: const RoundedRectangleBorder(),
+      buttonTheme: const ButtonThemeData(
+          shape: RoundedRectangleBorder(),
           disabledColor: AppColors.grey,
           buttonColor: AppColors.primary,
           splashColor: AppColors.lightPrimary),
@@ -45,18 +45,29 @@ ThemeData getAppTheme(TextTheme textTheme) {
               textStyle: getRegularStyle(color: AppColors.white),
               backgroundColor: AppColors.primary,
               disabledBackgroundColor: AppColors.grey,
-              minimumSize: Size(20, 50),
+              minimumSize: const Size(20, 50),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppSize.s12)))),
       //DataTable Theme
       dataTableTheme: DataTableThemeData(
           headingTextStyle: textTheme.bodyMedium,
-          dataTextStyle: textTheme.labelSmall),
+          dataTextStyle: textTheme.labelLarge),
 
       // Text Theme
-      textTheme: textTheme
+      textTheme: textTheme,
       // InputFields Theme
-      );
+      // Input Decoration Theme
+      inputDecorationTheme: InputDecorationTheme(
+          errorStyle: getLightStyle().copyWith(color: AppColors.red),
+          labelStyle: getMediumStyle(fontSize: 20.0, color: AppColors.black),
+          constraints: const BoxConstraints(minWidth: 500, maxWidth: 800),
+          errorBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: AppColors.red)),
+          focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: AppColors.primary, width: 2)),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(AppSize.s12),
+              borderSide: BorderSide(color: AppColors.primary, width: 2))));
 }
 
 class AppThemes {

@@ -18,7 +18,6 @@ class _PostScreenState extends State<PostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // drawer: const AppDrawer(),
 
       body: SingleChildScrollView(
         child: Stack(

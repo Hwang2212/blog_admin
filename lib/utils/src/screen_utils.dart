@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/theme.dart';
+
 class ScreenUtils {
   static Size _screenSize = const Size(0, 0);
   static Size screenSize = _screenSize;
@@ -19,4 +21,10 @@ class ScreenUtils {
 
   static double _screenWidth = 0;
   static double get screenWidth => _screenWidth;
+
+  static BoxConstraints get widthConstraints =>
+      const BoxConstraints(minWidth: AppSize.s600, maxWidth: AppSize.s1200);
+
+  static EdgeInsets get contentMargin =>
+      EdgeInsets.symmetric(vertical: AppMargin.m50, horizontal: AppMargin.m30);
 }

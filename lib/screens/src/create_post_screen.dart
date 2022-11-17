@@ -1,8 +1,11 @@
 library universal_ui;
 
+import 'package:arrivo_web/utils/src/app_assets.dart';
 import 'package:arrivo_web/utils/src/screen_utils.dart';
 import 'package:arrivo_web/widgets/src/app_card.dart';
+import 'package:arrivo_web/widgets/src/app_elevated_button.dart';
 import 'package:arrivo_web/widgets/src/app_text_form_field.dart';
+import 'package:arrivo_web/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 
@@ -23,14 +26,36 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   TextEditingController labelTEC = TextEditingController();
   HtmlEditorController controller = HtmlEditorController();
 
-  FocusNode _focusNode = FocusNode();
+  EdgeInsets formPadding = const EdgeInsets.symmetric(
+      horizontal: AppPadding.p10, vertical: AppPadding.p15);
+  final FocusNode _focusNode = FocusNode();
 
   TextTheme get textTheme => Theme.of(context).textTheme;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [titleText(), buildContent()],
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text("Arrivo Web"),
+      ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[AppColors.gradient1, AppColors.gradient2])),
+        child: SingleChildScrollView(
+          child: Stack(
+            children: [
+              // const ImageBackground(
+              //   backgroundPath: AppAssets.background,
+              // ),
+              Center(child: buildContent())
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -50,56 +75,85 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   }
 
   Widget buildContent() {
-    EdgeInsets formPadding = const EdgeInsets.symmetric(
-        horizontal: AppPadding.p10, vertical: AppPadding.p15);
     return Container(
-      margin: EdgeInsets.symmetric(
-          vertical: AppMargin.m100, horizontal: AppMargin.m30),
-      child: AppCard(
-          contentHeight: AppSize.s5000,
-          title: "Post",
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Padding(
-                  padding: formPadding,
-                  child: AppTextFormField(
-                    textEditingController: titleTEC,
-                    labelText: "Title",
-                  ),
-                ),
-                Padding(
-                  padding: formPadding,
-                  child: AppTextFormField(
-                    textEditingController: categoryTEC,
-                    labelText: "Category",
-                  ),
-                ),
-                Padding(
-                  padding: formPadding,
-                  child: AppTextFormField(
-                    textEditingController: labelTEC,
-                    labelText: "Label",
-                  ),
-                ),
-                Text("Body"),
-                Divider(),
-                HtmlEditor(
-                  controller: controller, //required
-                  htmlEditorOptions: HtmlEditorOptions(
-                    hint: "Pen your creativity",
-                  ),
-                  otherOptions: OtherOptions(
-                      height: 250,
-                      decoration: BoxDecoration(
-                          border: Border.all(),
-                          borderRadius: BorderRadius.circular(12))),
-                )
+      margin: ScreenUtils.contentMargin,
+      constraints: ScreenUtils.widthConstraints,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          titleText(),
+          AppCard(
+              contentHeight: AppSize.s400,
+              title: "Post",
+              actionList: [
+                AppElevatedButton(onPressed: () {}, child: const Text('Save'))
               ],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: formPadding,
+                    child: AppTextFormField(
+                      textEditingController: titleTEC,
+                      labelText: "Title *",
+                    ),
+                  ),
+                  Padding(
+                    padding: formPadding,
+                    child: AppTextFormField(
+                      textEditingController: categoryTEC,
+                      labelText: "Category *",
+                    ),
+                  ),
+                  Padding(
+                    padding: formPadding,
+                    child: AppTextFormField(
+                      textEditingController: labelTEC,
+                      labelText: "Label *",
+                    ),
+                  )
+                ],
+              )),
+          buildTextEditor(),
+          AppElevatedButton(onPressed: () {}, child: const Text('Save'))
+        ],
+      ),
+    );
+  }
+
+  Widget buildTextEditor() {
+    return Container(
+      margin: formPadding,
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(12)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: formPadding,
+            child: const Text("Body"),
+          ),
+          const Divider(),
+          HtmlEditor(
+            controller: controller, //required
+
+            htmlEditorOptions: const HtmlEditorOptions(
+              shouldEnsureVisible: true,
+              hint: "Pen your creativity",
             ),
-          )),
+            htmlToolbarOptions: const HtmlToolbarOptions(
+                toolbarType: ToolbarType.nativeGrid,
+                gridViewHorizontalSpacing: 0,
+                initiallyExpanded: false),
+            otherOptions: OtherOptions(
+                height: 500,
+                decoration: BoxDecoration(
+                    border: Border.all(),
+                    borderRadius: BorderRadius.circular(12))),
+          )
+        ],
+      ),
     );
   }
 }

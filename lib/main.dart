@@ -1,4 +1,5 @@
 import 'package:arrivo_web/bloc/auth/auth_bloc.dart';
+import 'package:arrivo_web/bloc/post/post_bloc.dart';
 import 'package:arrivo_web/services/src/shared_preferences.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
     );
     return MultiBlocProvider(providers: [
       BlocProvider<AuthBloc>(
-          create: (context) => AuthBloc(sharedPreferencesService))
+          create: (context) => AuthBloc(sharedPreferencesService)),
+      BlocProvider<PostBloc>(create: (context) => PostBloc()..add(LoadPost()))
     ], child: app);
   }
 }

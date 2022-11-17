@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
         body: BlocConsumer<AuthBloc, AuthState>(builder: (context, state) {
           if (state is AuthLoading) {
             return const ShowLoading();
-          } else {
+          } else { 
             return SingleChildScrollView(
               child: Center(
                 child: Column(

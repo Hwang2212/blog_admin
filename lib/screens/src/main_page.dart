@@ -1,5 +1,6 @@
 import 'package:arrivo_web/screens/screens.dart';
 import 'package:arrivo_web/utils/src/app_assets.dart';
+import 'package:arrivo_web/utils/src/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -51,6 +52,7 @@ class _MainPageState extends State<MainPage> {
               ],
               selectedIndex: _selectedIndex),
         ),
+        const VerticalDivider(),
         Flexible(flex: 10, child: _screens[_selectedIndex]),
       ]),
     );

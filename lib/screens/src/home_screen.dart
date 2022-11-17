@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget titleText() {
     return Padding(
       padding: const EdgeInsets.all(AppPadding.p30),
-      child: Row(
+      child: Column(
         children: [
           Text(
             'Dashboard',
@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 children: [
                   AppElevatedButton(
-                    onPressed: () {},
+                    onPressed: onTapAddPost,
                     child: const Icon(Icons.add_box_outlined),
                   ),
                   SizedBox(
@@ -219,5 +219,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+  void onTapAddPost() {
+    Navigator.pushNamed(context, Routes.addPostScreen);
   }
 }

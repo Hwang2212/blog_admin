@@ -1,4 +1,5 @@
 import 'package:arrivo_web/bloc/auth/auth_bloc.dart';
+import 'package:arrivo_web/services/src/shared_preferences.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:arrivo_web/utils/src/route_generator.dart';
@@ -21,16 +22,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final SharedPreferencesService sharedPreferencesService =
+        SharedPreferencesService();
     MaterialApp app = MaterialApp(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: getAppTheme(AppThemes.textTheme),
-      initialRoute: '/',
+      initialRoute: Routes.addPostScreen,
       onGenerateRoute: RouteGenerator.onGenerateRoute,
     );
-    return MultiBlocProvider(
-        providers: [BlocProvider<AuthBloc>(create: (context) => AuthBloc())],
-        child: app);
+    return MultiBlocProvider(providers: [
+      BlocProvider<AuthBloc>(
+          create: (context) => AuthBloc(sharedPreferencesService))
+    ], child: app);
   }
 }

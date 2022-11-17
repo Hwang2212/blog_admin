@@ -1,7 +1,9 @@
 part of 'auth_bloc.dart';
 
 @immutable
-abstract class AuthState {}
+abstract class AuthState {
+  bool get isLoggedIn => SharedPreferencesService().getLoggedIn();
+}
 
 class AuthInitial extends AuthState {}
 

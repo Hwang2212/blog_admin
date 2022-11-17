@@ -25,6 +25,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
           // leading: Image.asset(AppAssets.arrivoLogo),
+          automaticallyImplyLeading: false,
           title: const Text('Arrivo Admin')),
       body: Row(children: [
         Flexible(

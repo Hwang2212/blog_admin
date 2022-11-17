@@ -14,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   TextTheme get textTheme => Theme.of(context).textTheme;
-  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildMainContent() {
     return Container(
+      // constraints:
+      //     BoxConstraints(minWidth: AppSize.s800, maxWidth: AppSize.s1200),
       margin: EdgeInsets.symmetric(
           vertical: AppMargin.m100, horizontal: AppMargin.m30),
       child: Column(

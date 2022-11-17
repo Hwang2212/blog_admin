@@ -1,12 +1,9 @@
 import 'package:arrivo_web/bloc/auth/auth_bloc.dart';
 import 'package:arrivo_web/theme/theme.dart';
 import 'package:arrivo_web/utils/utils.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:arrivo_web/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../widgets/widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -21,10 +18,11 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordTEC = TextEditingController();
 
   bool _isValidated = false;
-  bool _obscureText = true;
+  final bool _obscureText = true;
 
   TextTheme get textTheme => Theme.of(context).textTheme;
   List<Widget> get signInFields => [
+        const Text("Log in with your Username and Password"),
         AppTextFormField(
           validator: FormValidators.validateName,
           onChanged: onChanged,
@@ -84,8 +82,10 @@ class _LoginScreenState extends State<LoginScreen> {
             ));
           } else if (state is AuthLoaded) {
             clearTextData();
-            Navigator.pushNamedAndRemoveUntil(
-                context, Routes.mainScreen, (route) => true);
+            Navigator.pushReplacementNamed(
+              context,
+              Routes.mainScreen,
+            );
           }
         })));
   }

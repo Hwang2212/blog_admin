@@ -50,6 +50,7 @@ ThemeData getAppTheme(TextTheme textTheme) {
                   borderRadius: BorderRadius.circular(AppSize.s12)))),
       //DataTable Theme
       dataTableTheme: DataTableThemeData(
+          headingRowHeight: AppSize.s80,
           headingTextStyle: textTheme.bodyMedium,
           dataTextStyle: textTheme.labelLarge),
 

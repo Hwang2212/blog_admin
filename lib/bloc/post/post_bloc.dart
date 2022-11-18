@@ -1,8 +1,8 @@
-import 'package:arrivo_web/repositories/src/post_repository.dart';
+import 'package:Blog_web/repositories/src/post_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:arrivo_web/models/models.dart';
+import 'package:Blog_web/models/models.dart';
 
 part 'post_event.dart';
 part 'post_state.dart';

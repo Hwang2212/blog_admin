@@ -1,8 +1,8 @@
-import 'package:arrivo_web/models/models.dart';
-import 'package:arrivo_web/theme/theme.dart';
-import 'package:arrivo_web/utils/utils.dart';
+import 'package:Blog_web/models/models.dart';
+import 'package:Blog_web/theme/theme.dart';
+import 'package:Blog_web/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:arrivo_web/widgets/widgets.dart';
+import 'package:Blog_web/widgets/widgets.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -89,6 +89,13 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                             ? "Normal"
                             : "Premium Content"),
                       ],
+                    ),
+                    Text(
+                      "Body",
+                      style: getLightStyle(
+                          fontSize: 10,
+                          color: Colors.black54,
+                          fontStyle: FontStyle.italic),
                     ),
                     Divider(),
                     Html(data: post.body)

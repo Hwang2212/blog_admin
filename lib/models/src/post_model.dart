@@ -1,10 +1,8 @@
-import 'package:arrivo_web/models/models.dart';
+import 'package:Blog_web/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'post_model.freezed.dart';
 part 'post_model.g.dart';
-
-
 
 @freezed
 class PostModel with _$PostModel {

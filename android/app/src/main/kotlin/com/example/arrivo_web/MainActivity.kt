@@ -1,4 +1,4 @@
-package com.example.arrivo_web
+package com.example.Blog_web
 
 import io.flutter.embedding.android.FlutterActivity
 

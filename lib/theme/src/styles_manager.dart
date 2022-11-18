@@ -1,4 +1,4 @@
-import 'package:arrivo_web/theme/theme.dart';
+import 'package:Blog_web/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 import 'app_fonts.dart';

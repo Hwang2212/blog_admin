@@ -1,4 +1,4 @@
-import 'package:arrivo_web/theme/src/app_size.dart';
+import 'package:Blog_web/theme/src/app_size.dart';
 import 'package:flutter/material.dart';
 
 class AppElevatedButton extends StatelessWidget {

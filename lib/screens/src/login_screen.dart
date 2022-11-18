@@ -1,8 +1,8 @@
-import 'package:arrivo_web/bloc/auth/auth_bloc.dart';
-import 'package:arrivo_web/theme/theme.dart';
-import 'package:arrivo_web/utils/utils.dart';
+import 'package:Blog_web/bloc/auth/auth_bloc.dart';
+import 'package:Blog_web/theme/theme.dart';
+import 'package:Blog_web/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:arrivo_web/widgets/widgets.dart';
+import 'package:Blog_web/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -23,6 +23,10 @@ class _LoginScreenState extends State<LoginScreen> {
   TextTheme get textTheme => Theme.of(context).textTheme;
   List<Widget> get signInFields => [
         const Text("Log in with your Username and Password"),
+        Text(
+          "Demo Username & Password: admin",
+          style: getRegularStyle(),
+        ),
         AppTextFormField(
           validator: FormValidators.validateName,
           onChanged: onChanged,
@@ -52,25 +56,37 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Arrivo Admin')),
+        appBar: AppBar(title: const Text('Blog Admin')),
         body: BlocConsumer<AuthBloc, AuthState>(builder: (context, state) {
           if (state is AuthLoading) {
             return const ShowLoading();
-          } else { 
-            return SingleChildScrollView(
-              child: Center(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.symmetric(vertical: AppPadding.p20),
-                      child: Text(
-                        'Login Page',
-                        style: textTheme.headlineLarge,
+          } else {
+            return Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: <Color>[
+                    AppColors.gradient1,
+                    AppColors.gradient2
+                  ])),
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: AppPadding.p20),
+                        child: Text(
+                          'Login Page',
+                          style: textTheme.headlineLarge,
+                        ),
                       ),
-                    ),
-                    buildMainContent(),
-                  ],
+                      buildMainContent(),
+                    ],
+                  ),
                 ),
               ),
             );

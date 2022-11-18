@@ -1,4 +1,4 @@
-import 'package:arrivo_web/models/models.dart';
+import 'package:Blog_web/models/models.dart';
 
 class StagingPost {
   static List<PostModel> postList = [

@@ -1,6 +1,6 @@
-import 'package:arrivo_web/screens/screens.dart';
-import 'package:arrivo_web/utils/src/app_assets.dart';
-import 'package:arrivo_web/utils/src/route_generator.dart';
+import 'package:Blog_web/screens/screens.dart';
+import 'package:Blog_web/utils/src/app_assets.dart';
+import 'package:Blog_web/utils/src/route_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -25,9 +25,9 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          // leading: Image.asset(AppAssets.arrivoLogo),
+          // leading: Image.asset(AppAssets.BlogLogo),
           automaticallyImplyLeading: false,
-          title: const Text('Arrivo Admin')),
+          title: const Text('Blog Admin')),
       body: Row(children: [
         Flexible(
           flex: 1,

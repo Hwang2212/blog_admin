@@ -1,5 +1,5 @@
-import 'package:arrivo_web/models/src/user_model.dart';
-import 'package:arrivo_web/repositories/repositories.dart';
+import 'package:Blog_web/models/src/user_model.dart';
+import 'package:Blog_web/repositories/repositories.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

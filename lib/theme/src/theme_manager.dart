@@ -1,8 +1,8 @@
-import 'package:arrivo_web/screens/screens.dart';
-import 'package:arrivo_web/theme/src/app_colors.dart';
-import 'package:arrivo_web/theme/src/app_fonts.dart';
-import 'package:arrivo_web/theme/src/app_size.dart';
-import 'package:arrivo_web/theme/src/styles_manager.dart';
+import 'package:Blog_web/screens/screens.dart';
+import 'package:Blog_web/theme/src/app_colors.dart';
+import 'package:Blog_web/theme/src/app_fonts.dart';
+import 'package:Blog_web/theme/src/app_size.dart';
+import 'package:Blog_web/theme/src/styles_manager.dart';
 import 'package:flutter/material.dart';
 
 ThemeData getAppTheme(TextTheme textTheme) {

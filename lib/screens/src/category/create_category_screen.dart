@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'dart:math' as math;
 import 'package:Blog_web/bloc/bloc.dart';
 import 'package:Blog_web/models/models.dart';
-import 'package:Blog_web/utils/src/screen_utils.dart';
 import 'package:Blog_web/utils/utils.dart';
 import 'package:Blog_web/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -14,24 +13,21 @@ import 'package:Blog_web/utils/src/dropdown_values.dart' as dv;
 
 import '../../../theme/theme.dart';
 
-class CreatePostScreen extends StatefulWidget {
-  const CreatePostScreen({super.key});
+class CreateCategoryScreen extends StatefulWidget {
+  const CreateCategoryScreen({super.key});
 
   @override
-  State<CreatePostScreen> createState() => _CreatePostScreenState();
+  State<CreateCategoryScreen> createState() => _CreateCategoryScreenState();
 }
 
-class _CreatePostScreenState extends State<CreatePostScreen> {
-  final GlobalKey<FormState> _createPostFormKey = GlobalKey<FormState>();
-  TextEditingController titleTEC = TextEditingController();
-  TextEditingController bodyTEC = TextEditingController();
-  TextEditingController categoryTEC = TextEditingController();
-  TextEditingController statusTEC = TextEditingController();
-  TextEditingController labelTEC = TextEditingController();
+class _CreateCategoryScreenState extends State<CreateCategoryScreen> {
+  final GlobalKey<FormState> _createCategoryFormKey = GlobalKey<FormState>();
+  TextEditingController nameTEC = TextEditingController();
+  TextEditingController descriptionTEC = TextEditingController();
+  TextEditingController activateTEC = TextEditingController();
   HtmlEditorController controller = HtmlEditorController();
 
-  MemberStatus _label = MemberStatus.normal;
-  int _category = 1;
+  int _activate = 1;
   bool _isValidated = false;
 
   final FocusNode _focusNode = FocusNode();
@@ -63,17 +59,17 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
   Widget buildContent() {
     return Form(
-      key: _createPostFormKey,
+      key: _createCategoryFormKey,
       child: Container(
         margin: ScreenUtils.contentMargin,
         constraints: ScreenUtils.widthConstraints,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const AppTitleText(title: "Create Posts"),
+            const AppTitleText(title: "Create Category"),
             AppCard(
                 contentHeight: AppSize.s400,
-                title: "Post",
+                title: "Category",
                 actionList: [
                   AppElevatedButton(onPressed: () {}, child: const Text('Save'))
                 ],
@@ -84,70 +80,20 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                     Padding(
                       padding: ScreenUtils.formPadding,
                       child: AppTextFormField(
-                        textEditingController: titleTEC,
+                        textEditingController: nameTEC,
                         onChanged: onValueChanged,
-                        labelText: "Title *",
+                        labelText: "Name *",
                       ),
-                    ),
-                    BlocBuilder<CategoryBloc, CategoryState>(
-                      builder: (context, state) {
-                        if (state is CategoryLoading) {
-                          return ShowLoading();
-                        }
-                        if (state is CategoryLoaded) {
-                          List<CategoryModel> categoryList = state.categoryList;
-                          return Padding(
-                              padding: ScreenUtils.formPadding,
-                              child: DropdownButtonFormField(
-                                  isDense: true,
-                                  isExpanded: true,
-                                  value: _category,
-                                  decoration: InputDecoration(
-                                      isDense: true,
-                                      labelText: "Category *",
-                                      errorStyle: getLightStyle()
-                                          .copyWith(color: AppColors.red),
-                                      labelStyle: getMediumStyle(
-                                          fontSize: 20.0,
-                                          color: AppColors.black),
-                                      constraints: const BoxConstraints(
-                                          minWidth: 500, maxWidth: 800),
-                                      errorBorder: const OutlineInputBorder(
-                                          borderSide:
-                                              BorderSide(color: AppColors.red)),
-                                      focusedBorder: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: AppColors.primary,
-                                              width: 2)),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(
-                                              AppSize.s12),
-                                          borderSide: const BorderSide(
-                                              color: AppColors.primary,
-                                              width: 2))),
-                                  items: categoryList
-                                      .map((e) => DropdownMenuItem(
-                                          value: e.id, child: Text(e.name)))
-                                      .toList(),
-                                  onChanged: ((value) {
-                                    setState(() {
-                                      _category = value as int;
-                                      categoryTEC.text = _category.toString();
-                                    });
-                                  })));
-                        }
-                        return Container();
-                      },
                     ),
                     Padding(
                         padding: ScreenUtils.formPadding,
                         child: DropdownButtonFormField(
                             isDense: true,
                             isExpanded: true,
-                            value: _label,
+                            value: _activate,
                             decoration: InputDecoration(
                                 isDense: true,
-                                labelText: "Label *",
+                                labelText: "Activated? *",
                                 errorStyle: getLightStyle()
                                     .copyWith(color: AppColors.red),
                                 labelStyle: getMediumStyle(
@@ -165,15 +111,15 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                         BorderRadius.circular(AppSize.s12),
                                     borderSide: const BorderSide(
                                         color: AppColors.primary, width: 2))),
-                            items: dv.member
+                            items: dv.activated
                                 .map((e) => DropdownMenuItem(
                                     value: e["id"],
-                                    child: Text(e["member"].toString())))
+                                    child: Text(e["activate"].toString())))
                                 .toList(),
                             onChanged: ((value) {
                               setState(() {
-                                _label = value as MemberStatus;
-                                labelTEC.text = _label.toString();
+                                _activate = value as int;
+                                activateTEC.text = _activate.toString();
                               });
                             }))),
                   ],
@@ -182,7 +128,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             Container(
                 margin: EdgeInsets.only(top: AppMargin.m20),
                 child: AppElevatedButton(
-                    onPressed: _isValidated ? onTapCreatePost : () {},
+                    onPressed: _isValidated ? onTapCreateCategory : () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
@@ -209,7 +155,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         children: [
           Padding(
             padding: ScreenUtils.formPadding,
-            child: const Text("Body"),
+            child: const Text("Description"),
           ),
           const Divider(),
           HtmlEditor(
@@ -217,7 +163,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
             htmlEditorOptions: const HtmlEditorOptions(
               shouldEnsureVisible: true,
-              hint: "Pen your creativity",
+              hint: "Input Category Description",
             ),
             htmlToolbarOptions: const HtmlToolbarOptions(
                 toolbarType: ToolbarType.nativeGrid,
@@ -235,31 +181,26 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   }
 
   void onValueChanged(String? value) {
-    _isValidated = _createPostFormKey.currentState?.validate() ?? false;
+    _isValidated = _createCategoryFormKey.currentState?.validate() ?? false;
     setState(() {});
   }
 
-  void onTapCreatePost() async {
-    PostBloc postBloc = BlocProvider.of<PostBloc>(context);
+  void onTapCreateCategory() async {
+    CategoryBloc categoryBloc = BlocProvider.of<CategoryBloc>(context);
     NavigatorState navigatorState = Navigator.of(context);
     if (_isValidated) {
-      final PostModel newPost = PostModel(
-        id: math.Random().nextInt(1000),
-        body: await controller.getText(),
-        categoryId: int.parse(categoryTEC.text),
-        label: _label,
-        status: "Pending",
-        title: titleTEC.text,
-      );
+      final CategoryModel newCategory = CategoryModel(
+          id: math.Random().nextInt(1000),
+          description: await controller.getText(),
+          activated: _activate,
+          name: nameTEC.text);
 
       // Call PostBloc here
 
-      postBloc.add(AddPost(newPost));
+      categoryBloc.add(AddCategory(newCategory));
       // navigatorState.pop;
       navigatorState.pushNamedAndRemoveUntil(
-          Routes.mainScreen, ((route) => false));
-
-      log("User Added: ${StagingUser.userList.toString()}");
+          Routes.categoryScreen, ((route) => false));
     } else if (_isValidated == false) {
       ScaffoldMessengerState().showSnackBar(
           const SnackBar(content: Text("Please enter required fields")));

@@ -1,5 +1,6 @@
 export 'src/home_screen.dart';
-export 'src/category/category_screeen.dart';
+export 'src/category/category_screen.dart';
+export 'src/category/create_category_screen.dart';
 export 'src/post/create_post_screen.dart';
 export 'src/login_screen.dart';
 export 'src/main_page.dart';

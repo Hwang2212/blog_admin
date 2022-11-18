@@ -1,4 +1,4 @@
-import 'package:arrivo_web/models/models.dart';
+import 'package:Blog_web/models/models.dart';
 
 const List<Map> member = [
   {"id": MemberStatus.normal, "member": "Normal"},
@@ -20,4 +20,9 @@ List<Map> categoryId = [
   {"id": 1, "category": "Data Science"},
   {"id": 2, "category": "AI"},
   {"id": 3, "category": "Published"}
+];
+
+List<Map> activated = [
+  {"id": 1, "activate": "Yes"},
+  {"id": 2, "activate": "No"},
 ];

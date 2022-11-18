@@ -1,6 +1,6 @@
-import 'package:arrivo_web/models/models.dart';
-import 'package:arrivo_web/screens/screens.dart';
-import 'package:arrivo_web/screens/src/post/post_details.dart';
+import 'package:Blog_web/models/models.dart';
+import 'package:Blog_web/screens/screens.dart';
+import 'package:Blog_web/screens/src/post/post_details.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -12,6 +12,7 @@ class Routes {
   static const categoryScreen = '/category-screen';
   static const addPostScreen = '/create-post-screen';
   static const addUserScreen = '/create-user-screen';
+  static const addCategoryScreen = '/create-category-screen';
   static const loginScreen = '/';
 }
 
@@ -45,6 +46,9 @@ class RouteGenerator {
         break;
       case Routes.categoryScreen:
         builder = (_) => const CategoryScreen();
+        break;
+      case Routes.addCategoryScreen:
+        builder = (_) => const CreateCategoryScreen();
         break;
 
       default:

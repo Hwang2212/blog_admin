@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:arrivo_web/bloc/bloc.dart';
-import 'package:arrivo_web/models/models.dart';
-import 'package:arrivo_web/theme/theme.dart';
-import 'package:arrivo_web/utils/utils.dart';
+import 'package:Blog_web/bloc/bloc.dart';
+import 'package:Blog_web/models/models.dart';
+import 'package:Blog_web/theme/theme.dart';
+import 'package:Blog_web/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:arrivo_web/widgets/widgets.dart';
+import 'package:Blog_web/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserScreen extends StatefulWidget {

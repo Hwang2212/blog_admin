@@ -1,6 +1,6 @@
 {
-    "name": "arrivo_web",
-    "short_name": "arrivo_web",
+    "name": "Blog_web",
+    "short_name": "Blog_web",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

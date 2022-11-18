@@ -1,5 +1,5 @@
-import 'package:arrivo_web/models/models.dart';
-import 'package:arrivo_web/utils/utils.dart';
+import 'package:Blog_web/models/models.dart';
+import 'package:Blog_web/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesService {

@@ -1,8 +1,8 @@
 // Unused
 
-// import 'package:arrivo_web/utils/utils.dart';
+// import 'package:Blog_web/utils/utils.dart';
 // import 'package:flutter/material.dart';
-// import 'package:arrivo_web/theme/theme.dart';
+// import 'package:Blog_web/theme/theme.dart';
 
 // class AppDrawer extends StatelessWidget {
 //   const AppDrawer({super.key});

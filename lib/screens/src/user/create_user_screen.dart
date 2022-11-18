@@ -3,12 +3,12 @@ library universal_ui;
 import 'dart:developer';
 import 'dart:math' as math;
 
-import 'package:arrivo_web/bloc/bloc.dart';
-import 'package:arrivo_web/models/models.dart';
-import 'package:arrivo_web/utils/utils.dart';
-import 'package:arrivo_web/widgets/widgets.dart';
+import 'package:Blog_web/bloc/bloc.dart';
+import 'package:Blog_web/models/models.dart';
+import 'package:Blog_web/utils/utils.dart';
+import 'package:Blog_web/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:arrivo_web/utils/src/dropdown_values.dart' as dv;
+import 'package:Blog_web/utils/src/dropdown_values.dart' as dv;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../theme/theme.dart';
@@ -37,7 +37,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text("Arrivo Web"),
+        title: const Text("Blog"),
       ),
       body: Container(
         width: double.infinity,
@@ -191,9 +191,8 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
       // Call UserBloc here
 
       BlocProvider.of<UserBloc>(context).add(AddUser(newUser));
-      // Navigator.pop(context);
       Navigator.pushNamedAndRemoveUntil(
-          context, Routes.userScreen, ((route) => false));
+          context, Routes.mainScreen, ((route) => false));
 
       log("User Added: ${StagingUser.userList.toString()}");
     } else if (_isValidated == false) {

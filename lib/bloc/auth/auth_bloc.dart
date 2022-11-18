@@ -19,7 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         } else {
           emit(AuthLoading());
           await Future.delayed(const Duration(seconds: 3), () async {
-            await sharedPreferences.setLogIn();
+            // await sharedPreferences.setLogIn();
             emit(AuthLoaded(event.userName));
           });
         }

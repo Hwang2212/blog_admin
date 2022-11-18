@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:arrivo_web/models/models.dart';
+import 'package:Blog_web/models/models.dart';
 
 part 'auth_model.freezed.dart';
 part 'auth_model.g.dart';

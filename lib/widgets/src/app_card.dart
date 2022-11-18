@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:arrivo_web/theme/theme.dart';
+import 'package:Blog_web/theme/theme.dart';
 
 class AppCard extends StatelessWidget {
   final String title;

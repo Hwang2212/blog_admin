@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:arrivo_web/models/models.dart';
-import 'package:arrivo_web/utils/utils.dart';
+import 'package:Blog_web/models/models.dart';
+import 'package:Blog_web/utils/utils.dart';
 
 class PostRepository {
   List<PostModel> _postList = [];

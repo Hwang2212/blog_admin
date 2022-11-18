@@ -8,6 +8,7 @@ class Routes {
   static const postScreen = '/post-screen';
   static const categoryScreen = '/category-screen';
   static const addPostScreen = '/create-post-screen';
+  static const addUserScreen = '/create-user-screen';
   static const loginScreen = '/';
 }
 
@@ -32,6 +33,9 @@ class RouteGenerator {
         break;
       case Routes.addPostScreen:
         builder = (_) => const CreatePostScreen();
+        break;
+      case Routes.addUserScreen:
+        builder = (_) => const CreateUserScreen();
         break;
       case Routes.categoryScreen:
         builder = (_) => const CategoryScreen();

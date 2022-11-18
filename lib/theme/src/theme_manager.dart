@@ -42,7 +42,7 @@ ThemeData getAppTheme(TextTheme textTheme) {
           splashColor: AppColors.lightPrimary),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-              textStyle: getRegularStyle(color: AppColors.white),
+              textStyle: getRegularStyle(fontSize: 16, color: AppColors.white),
               backgroundColor: AppColors.primary,
               disabledBackgroundColor: AppColors.grey,
               minimumSize: const Size(20, 50),
@@ -56,19 +56,20 @@ ThemeData getAppTheme(TextTheme textTheme) {
 
       // Text Theme
       textTheme: textTheme,
-      // InputFields Theme
+
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
           errorStyle: getLightStyle().copyWith(color: AppColors.red),
           labelStyle: getMediumStyle(fontSize: 20.0, color: AppColors.black),
           constraints: const BoxConstraints(minWidth: 500, maxWidth: 800),
-          errorBorder: const UnderlineInputBorder(
+          errorBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: AppColors.red)),
           focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: AppColors.primary, width: 2)),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSize.s12),
-              borderSide: BorderSide(color: AppColors.primary, width: 2))));
+              borderSide:
+                  const BorderSide(color: AppColors.primary, width: 2))));
 }
 
 class AppThemes {

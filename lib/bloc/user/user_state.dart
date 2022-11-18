@@ -1,19 +1,32 @@
-// part of 'user_bloc.dart';
+part of 'user_bloc.dart';
 
-// abstract class UserState extends Equatable {
-//   const UserState();
+abstract class UserState extends Equatable {
+  const UserState();
 
-//   @override
-//   UserModel get props => UserModel();
-// }
+  @override
+  List<Object> get props => [];
+}
 
-// class UserInitial extends UserState {}
+class UserInitial extends UserState {}
 
-// class UserLoaded extends UserState {
-//   final UserModel userModel;
+class UserLoading extends UserState {
+  @override
+  List<Object> get props => [];
+}
 
-//   const UserLoaded({required this.userModel});
+class UserLoaded extends UserState {
+  final List<UserModel> userList;
 
-//   @override
-//   UserModel get props => userModel;
-// }
+  const UserLoaded({required this.userList});
+
+  @override
+  List<Object> get props => [userList];
+}
+
+class UserError extends UserState {
+  final String error;
+  const UserError(this.error);
+
+  @override
+  List<Object> get props => [error];
+}

@@ -14,7 +14,7 @@ class UserModel with _$UserModel {
       String? email,
       String? createdAt,
       String? updatedAt,
-      String? membership}) = _UserModel;
+      required int membership}) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);

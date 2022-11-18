@@ -1,3 +1,4 @@
+import 'package:arrivo_web/theme/src/app_size.dart';
 import 'package:flutter/material.dart';
 
 class AppElevatedButton extends StatelessWidget {
@@ -15,7 +16,9 @@ class AppElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      style: ElevatedButton.styleFrom(backgroundColor: buttonColor),
+      style: ElevatedButton.styleFrom(
+          // fixedSize: Size(AppSize.s200, AppSize.s50) ,
+          backgroundColor: buttonColor),
       child: child,
     );
   }

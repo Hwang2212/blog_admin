@@ -27,7 +27,7 @@ mixin _$UserModel {
   String? get email => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
   String? get updatedAt => throw _privateConstructorUsedError;
-  String? get membership => throw _privateConstructorUsedError;
+  int get membership => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +48,7 @@ abstract class $UserModelCopyWith<$Res> {
       String? email,
       String? createdAt,
       String? updatedAt,
-      String? membership});
+      int membership});
 }
 
 /// @nodoc
@@ -71,7 +71,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? email = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
-    Object? membership = freezed,
+    Object? membership = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -102,10 +102,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String?,
-      membership: freezed == membership
+      membership: null == membership
           ? _value.membership
           : membership // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int,
     ) as $Val);
   }
 }
@@ -125,7 +125,7 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       String? email,
       String? createdAt,
       String? updatedAt,
-      String? membership});
+      int membership});
 }
 
 /// @nodoc
@@ -146,7 +146,7 @@ class __$$_UserModelCopyWithImpl<$Res>
     Object? email = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
-    Object? membership = freezed,
+    Object? membership = null,
   }) {
     return _then(_$_UserModel(
       id: null == id
@@ -177,10 +177,10 @@ class __$$_UserModelCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String?,
-      membership: freezed == membership
+      membership: null == membership
           ? _value.membership
           : membership // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int,
     ));
   }
 }
@@ -197,7 +197,7 @@ class _$_UserModel implements _UserModel {
       this.email,
       this.createdAt,
       this.updatedAt,
-      this.membership});
+      required this.membership});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
@@ -217,7 +217,7 @@ class _$_UserModel implements _UserModel {
   @override
   final String? updatedAt;
   @override
-  final String? membership;
+  final int membership;
 
   @override
   String toString() {
@@ -273,7 +273,7 @@ abstract class _UserModel implements UserModel {
       final String? email,
       final String? createdAt,
       final String? updatedAt,
-      final String? membership}) = _$_UserModel;
+      required final int membership}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
@@ -293,7 +293,7 @@ abstract class _UserModel implements UserModel {
   @override
   String? get updatedAt;
   @override
-  String? get membership;
+  int get membership;
   @override
   @JsonKey(ignore: true)
   _$$_UserModelCopyWith<_$_UserModel> get copyWith =>

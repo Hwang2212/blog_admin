@@ -3,11 +3,13 @@ library universal_ui;
 import 'dart:developer';
 import 'dart:math' as math;
 
+import 'package:arrivo_web/bloc/bloc.dart';
 import 'package:arrivo_web/models/models.dart';
 import 'package:arrivo_web/utils/utils.dart';
 import 'package:arrivo_web/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:arrivo_web/utils/src/dropdown_values.dart' as dv;
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../theme/theme.dart';
 
@@ -26,7 +28,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
   TextEditingController emailTEC = TextEditingController();
   TextEditingController membershipTEC = TextEditingController();
 
-  int _member = 1;
+  MemberStatus _member = MemberStatus.normal;
   bool _isValidated = false;
 
   EdgeInsets formPadding = const EdgeInsets.symmetric(
@@ -148,7 +150,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                                 .toList(),
                             onChanged: ((value) {
                               setState(() {
-                                _member = value as int;
+                                _member = value as MemberStatus;
                                 membershipTEC.text = _member.toString();
                               });
                             })))
@@ -191,9 +193,10 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
 
       // Call UserBloc here
 
-      StagingUser.userList.add(newUser);
+      BlocProvider.of<UserBloc>(context).add(AddUser(newUser));
+      // Navigator.pop(context);
       Navigator.pushNamedAndRemoveUntil(
-          context, Routes.mainScreen, ((route) => false));
+          context, Routes.userScreen, ((route) => false));
 
       log("User Added: ${StagingUser.userList.toString()}");
     } else if (_isValidated == false) {

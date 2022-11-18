@@ -3,6 +3,16 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
+enum MemberStatus {
+
+  @JsonValue(1)
+  normal,
+  @JsonValue(2)
+  premium,
+
+
+}
+
 @freezed
 class UserModel with _$UserModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
@@ -14,7 +24,7 @@ class UserModel with _$UserModel {
       String? email,
       String? createdAt,
       String? updatedAt,
-      required int membership}) = _UserModel;
+      required MemberStatus membership}) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);

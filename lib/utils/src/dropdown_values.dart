@@ -1,11 +1,13 @@
+import 'package:arrivo_web/models/models.dart';
+
 const List<Map> member = [
-  {"id": 1, "member": "Normal"},
-  {"id": 2, "member": "Premium"}
+  {"id": MemberStatus.normal, "member": "Normal"},
+  {"id": MemberStatus.premium, "member": "Premium"}
 ];
 
 const List<Map> label = [
-  {"id": 1, "label": "Normal"},
-  {"id": 2, "label": "Premium"}
+  {"id": MemberStatus.normal, "label": "Normal"},
+  {"id": MemberStatus.premium, "label": "Premium"}
 ];
 
 const List<Map> postStatus = [

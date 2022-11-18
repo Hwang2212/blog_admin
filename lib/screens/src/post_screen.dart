@@ -18,28 +18,19 @@ class _PostScreenState extends State<PostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            titleText(),
-            buildMainContent(),
-          ],
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[AppColors.gradient1, AppColors.gradient2])),
+        child: SingleChildScrollView(
+          child: Stack(
+            children: [Center(child: buildMainContent())],
+          ),
         ),
-      ),
-    );
-  }
-
-  Widget titleText() {
-    return Padding(
-      padding: const EdgeInsets.all(AppPadding.p30),
-      child: Row(
-        children: [
-          Text(
-            'Posts',
-            style: textTheme.headlineLarge,
-          )
-        ],
       ),
     );
   }
@@ -53,6 +44,7 @@ class _PostScreenState extends State<PostScreen> {
           AppCard(
             title: 'Post',
             actionList: [
+              const AppTitleText(title: "Posts"),
               Row(
                 children: [
                   AppElevatedButton(

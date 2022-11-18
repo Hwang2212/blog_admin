@@ -1,14 +1,12 @@
 import 'dart:developer';
 
 import 'package:arrivo_web/bloc/bloc.dart';
+import 'package:arrivo_web/models/models.dart';
 import 'package:arrivo_web/theme/theme.dart';
 import 'package:arrivo_web/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:arrivo_web/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:html_editor_enhanced/utils/shims/dart_ui_real.dart';
-
-import '../../widgets/widgets.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({super.key});
@@ -19,15 +17,18 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
   TextTheme get textTheme => Theme.of(context).textTheme;
-  int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      BlocProvider.of<UserBloc>(context).add(LoadUser());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text("Arrivo Web"),
-      ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -64,7 +65,9 @@ class _UserScreenState extends State<UserScreen> {
                     Row(
                       children: [
                         AppElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, Routes.addUserScreen);
+                          },
                           child: Constants.userIcon,
                         ),
                         SizedBox(
@@ -84,7 +87,11 @@ class _UserScreenState extends State<UserScreen> {
                       Column(
                         children: [
                           Text(
-                            userList.length.toString(),
+                            userList
+                                .where((user) =>
+                                    user.membership == MemberStatus.normal)
+                                .length
+                                .toString(),
                             style: textTheme.bodyLarge
                                 ?.copyWith(color: AppColors.primary),
                           ),
@@ -98,7 +105,11 @@ class _UserScreenState extends State<UserScreen> {
                       Column(
                         children: [
                           Text(
-                            userList.length.toString(),
+                            userList
+                                .where((user) =>
+                                    user.membership == MemberStatus.premium)
+                                .length
+                                .toString(),
                             style: textTheme.bodyLarge
                                 ?.copyWith(color: AppColors.yellow),
                           ),
@@ -128,8 +139,6 @@ class _UserScreenState extends State<UserScreen> {
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 2,
-                      // childAspectRatio: 4,
-                      // mainAxisExtent: AppSize.s30,
                       mainAxisSpacing: 3),
                   itemCount: userList.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -138,7 +147,8 @@ class _UserScreenState extends State<UserScreen> {
                           margin: ScreenUtils.contentMargin,
                           child: Column(children: [
                             CircleAvatar(
-                              backgroundColor: userList[index].membership == 2
+                              backgroundColor: userList[index].membership ==
+                                      MemberStatus.premium
                                   ? AppColors.yellow
                                   : AppColors.primary,
                               radius: AppSize.s50,
@@ -148,7 +158,7 @@ class _UserScreenState extends State<UserScreen> {
                               userList[index].fullName,
                               style: getBoldStyle(fontSize: FontSize.s28),
                             ),
-                            userList[index].membership == 2
+                            userList[index].membership == MemberStatus.premium
                                 ? Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -165,7 +175,7 @@ class _UserScreenState extends State<UserScreen> {
                                       )
                                     ],
                                   )
-                                : SizedBox(
+                                : const SizedBox(
                                     height: AppSize.s20,
                                   ),
                             Text(

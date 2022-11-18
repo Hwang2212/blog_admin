@@ -14,7 +14,7 @@ _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
       email: json['email'] as String?,
       createdAt: json['created_at'] as String?,
       updatedAt: json['updated_at'] as String?,
-      membership: json['membership'] as int,
+      membership: $enumDecode(_$MemberStatusEnumMap, json['membership']),
     );
 
 Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
@@ -26,5 +26,10 @@ Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
       'email': instance.email,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
-      'membership': instance.membership,
+      'membership': _$MemberStatusEnumMap[instance.membership]!,
     };
+
+const _$MemberStatusEnumMap = {
+  MemberStatus.normal: 1,
+  MemberStatus.premium: 2,
+};

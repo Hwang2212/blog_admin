@@ -7,18 +7,18 @@ class StagingUser {
         fullName: "Ali",
         username: "aliman",
         password: "abc123",
-        membership: 1),
+        membership: MemberStatus.normal),
     UserModel(
         id: 2,
         fullName: "Banana",
         username: "bnn",
         password: "abc123",
-        membership: 2),
+        membership: MemberStatus.premium),
     UserModel(
         id: 3,
         fullName: "Coconut",
         username: "cocu",
         password: "abc123",
-        membership: 1),
+        membership: MemberStatus.normal),
   ];
 }

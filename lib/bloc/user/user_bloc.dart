@@ -20,12 +20,18 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(UserError(e.toString()));
       }
     });
-    on<AddUser>((event, emit) {
-      if (state is UserLoaded) {
-        final state = this.state as UserLoaded;
-        emit(UserLoaded(userList: List.from(state.userList)..add(event.user)));
+
+    on<AddUser>((event, emit) async {
+      emit(UserLoading());
+
+      try {
+        await _userRepository.addUser(newUser: event.user);
+        emit(UserAdded());
+      } catch (e) {
+        emit(UserError(e.toString()));
       }
     });
+
     on<RemoveUser>((event, emit) {
       if (state is UserLoaded) {
         final state = this.state as UserLoaded;

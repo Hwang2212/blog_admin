@@ -25,4 +25,13 @@ class UserRepository {
       throw Exception(e.toString());
     }
   }
+
+  Future<void> removeUser({required UserModel user}) async {
+    try {
+      _userList.remove(user);
+      log("USER Removed $user");
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }

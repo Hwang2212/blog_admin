@@ -1,5 +1,4 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../services/src/shared_preferences.dart';
 
@@ -15,7 +14,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (event is Login) {
         if (event.userName.isEmpty ||
             event.password.isEmpty ||
-            (event.userName != "admin" && event.password != "admin")) {
+            (event.userName != "admin" || event.password != "admin")) {
           emit(AuthError());
         } else {
           emit(AuthLoading());

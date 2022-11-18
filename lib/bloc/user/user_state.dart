@@ -19,6 +19,11 @@ class UserAdded extends UserState {
   List<Object> get props => [];
 }
 
+class UserRemoved extends UserState {
+  @override
+  List<Object> get props => [];
+}
+
 class UserLoaded extends UserState {
   final List<UserModel> userList;
 

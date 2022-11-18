@@ -1,6 +1,5 @@
 import 'package:arrivo_web/models/src/user_model.dart';
 import 'package:arrivo_web/repositories/repositories.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,21 +21,26 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     });
 
     on<AddUser>((event, emit) async {
-      emit(UserLoading());
-
       try {
-        await _userRepository.addUser(newUser: event.user);
-        emit(UserAdded());
+        if (state is UserLoaded) {
+          final state = this.state as UserLoaded;
+          emit(
+              UserLoaded(userList: List.from(state.userList)..add(event.user)));
+        }
       } catch (e) {
         emit(UserError(e.toString()));
       }
     });
 
-    on<RemoveUser>((event, emit) {
-      if (state is UserLoaded) {
-        final state = this.state as UserLoaded;
-        emit(UserLoaded(
-            userList: List.from(state.userList)..remove(event.user)));
+    on<RemoveUser>((event, emit) async {
+      try {
+        if (state is UserLoaded) {
+          final state = this.state as UserLoaded;
+          emit(UserLoaded(
+              userList: List.from(state.userList)..remove(event.user)));
+        }
+      } catch (e) {
+        emit(UserError(e.toString()));
       }
     });
   }

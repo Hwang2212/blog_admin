@@ -21,9 +21,8 @@ class _UserScreenState extends State<UserScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      BlocProvider.of<UserBloc>(context).add(LoadUser());
-    });
+
+    // BlocProvider.of<UserBloc>(context, listen: false).add(LoadUser());
   }
 
   @override
@@ -210,7 +209,19 @@ class _UserScreenState extends State<UserScreen> {
                                   onPressed: () {},
                                   buttonColor: AppColors.yellow,
                                   child: const Icon(Icons.search),
-                                )
+                                ),
+                                const SizedBox(
+                                  width: AppSize.s15,
+                                ),
+                                AppElevatedButton(
+                                  onPressed: () {
+                                    BlocProvider.of<UserBloc>(context,
+                                            listen: false)
+                                        .add(RemoveUser(userList[index]));
+                                  },
+                                  buttonColor: AppColors.red,
+                                  child: const Icon(Icons.delete),
+                                ),
                               ],
                             )
                           ])),

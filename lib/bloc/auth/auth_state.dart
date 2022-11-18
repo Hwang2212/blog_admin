@@ -1,6 +1,5 @@
 part of 'auth_bloc.dart';
 
-@immutable
 abstract class AuthState {
   bool get isLoggedIn => SharedPreferencesService().getLoggedIn();
 }

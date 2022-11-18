@@ -3,34 +3,44 @@ import 'package:arrivo_web/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:arrivo_web/widgets/widgets.dart';
 
-import '../../widgets/widgets.dart';
+import '../../../widgets/widgets.dart';
 
-class PostScreen extends StatefulWidget {
-  const PostScreen({super.key});
+class CategoryScreen extends StatefulWidget {
+  const CategoryScreen({super.key});
 
   @override
-  State<PostScreen> createState() => _PostScreenState();
+  State<CategoryScreen> createState() => _CategoryScreenState();
 }
 
-class _PostScreenState extends State<PostScreen> {
+class _CategoryScreenState extends State<CategoryScreen> {
   TextTheme get textTheme => Theme.of(context).textTheme;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[AppColors.gradient1, AppColors.gradient2])),
-        child: SingleChildScrollView(
-          child: Stack(
-            children: [Center(child: buildMainContent())],
-          ),
+      // drawer: const AppDrawer(),
+
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            titleText(),
+            buildMainContent(),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget titleText() {
+    return Padding(
+      padding: const EdgeInsets.all(AppPadding.p30),
+      child: Row(
+        children: [
+          Text(
+            'Categories',
+            style: textTheme.headlineLarge,
+          )
+        ],
       ),
     );
   }
@@ -42,9 +52,8 @@ class _PostScreenState extends State<PostScreen> {
       child: Column(
         children: [
           AppCard(
-            title: 'Post',
+            title: 'Category',
             actionList: [
-              const AppTitleText(title: "Posts"),
               Row(
                 children: [
                   AppElevatedButton(
@@ -65,7 +74,7 @@ class _PostScreenState extends State<PostScreen> {
             child: Center(
               child: ClipRRect(
                 child: DataTable(
-                  columns: postColumnHeaders
+                  columns: categoryColumnHeaders
                       .map((e) => DataColumn(label: Text(e)))
                       .toList(),
                   rows: const [
@@ -74,7 +83,6 @@ class _PostScreenState extends State<PostScreen> {
                       DataCell(Text('Title 1')),
                       DataCell(Text('1')),
                       DataCell(Text('1')),
-                      DataCell(Text('Normal')),
                       DataCell(Text('Button')),
                     ]),
                     DataRow(cells: [
@@ -82,7 +90,6 @@ class _PostScreenState extends State<PostScreen> {
                       DataCell(Text('Title 2')),
                       DataCell(Text('2')),
                       DataCell(Text('2')),
-                      DataCell(Text('Normal')),
                       DataCell(Text('Button')),
                     ]),
                     DataRow(cells: [
@@ -90,7 +97,6 @@ class _PostScreenState extends State<PostScreen> {
                       DataCell(Text('Title 1')),
                       DataCell(Text('1')),
                       DataCell(Text('1')),
-                      DataCell(Text('Normal')),
                       DataCell(Text('Button')),
                     ]),
                   ],

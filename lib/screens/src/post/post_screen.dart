@@ -7,17 +7,20 @@ import 'package:flutter/material.dart';
 import 'package:arrivo_web/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../widgets/widgets.dart';
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class PostScreen extends StatefulWidget {
+  const PostScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<PostScreen> createState() => _PostScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _PostScreenState extends State<PostScreen> {
   TextTheme get textTheme => Theme.of(context).textTheme;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,80 +43,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildMainContent() {
-    return Container(
-      margin: ScreenUtils.contentMargin,
-      child: Column(
-        children: [
-          const AppTitleText(title: "Dashboard"),
-          buildUserCard(),
-          buildPostTable(),
-          buildCategoryList()
-        ],
-      ),
-    );
-  }
-
-  void onTapAddPost() {
-    Navigator.pushNamed(context, Routes.addPostScreen);
-  }
-
-  Widget buildCategoryList() {
-    return AppCard(
-      title: 'Category',
-      actionList: [
-        Row(
-          children: [
-            AppElevatedButton(
-              onPressed: () {},
-              child: const Icon(Icons.add_box_outlined),
-            ),
-            SizedBox(
-              width: AppMargin.m10,
-            ),
-            AppElevatedButton(
-              onPressed: () {},
-              buttonColor: AppColors.yellow,
-              child: const Icon(Icons.remove_red_eye_outlined),
-            ),
-          ],
-        ),
-      ],
-      child: Center(
-        child: ClipRRect(
-          child: DataTable(
-            columns: categoryColumnHeaders
-                .map((e) => DataColumn(label: Text(e)))
-                .toList(),
-            rows: const [
-              DataRow(cells: [
-                DataCell(Text('1')),
-                DataCell(Text('Title 1')),
-                DataCell(Text('1')),
-                DataCell(Text('1')),
-                DataCell(Text('Button')),
-              ]),
-              DataRow(cells: [
-                DataCell(Text('2')),
-                DataCell(Text('Title 2')),
-                DataCell(Text('2')),
-                DataCell(Text('2')),
-                DataCell(Text('Button')),
-              ]),
-              DataRow(cells: [
-                DataCell(Text('1')),
-                DataCell(Text('Title 1')),
-                DataCell(Text('1')),
-                DataCell(Text('1')),
-                DataCell(Text('Button')),
-              ]),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildPostTable() {
     return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
         if (state is PostLoading) {
@@ -126,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 vertical: AppMargin.m100, horizontal: AppMargin.m30),
             child: Column(
               children: [
+                const AppTitleText(title: "Posts"),
                 AppCard(
                   title: 'Post',
                   actionList: [
@@ -149,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                   child: Center(
-                    child: ClipRRect(
+                    child: SizedBox(
                       child: DataTable(
                           columns: postColumnHeaders
                               .map((e) => DataColumn(label: Text(e)))
@@ -204,95 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         } else if (state is PostError) {
-          return Center(
-            child: Text(state.error),
-          );
-        }
-        return Container();
-      },
-    );
-  }
-
-  Widget buildUserCard() {
-    return BlocBuilder<UserBloc, UserState>(
-      builder: (context, state) {
-        if (state is UserLoading) {
-          return const ShowLoading();
-        }
-        if (state is UserLoaded) {
-          final userList = state.userList;
-          return Container(
-            margin: ScreenUtils.contentMargin,
-            child: Column(
-              children: [
-                AppCard(
-                  title: 'Users',
-                  actionList: [
-                    Row(
-                      children: [
-                        AppElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Routes.addUserScreen);
-                          },
-                          child: Constants.userIcon,
-                        ),
-                        SizedBox(
-                          width: AppMargin.m10,
-                        ),
-                        AppElevatedButton(
-                          onPressed: () {},
-                          buttonColor: AppColors.yellow,
-                          child: Constants.viewIcon,
-                        ),
-                      ],
-                    ),
-                  ],
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            userList
-                                .where((user) =>
-                                    user.membership == MemberStatus.normal)
-                                .length
-                                .toString(),
-                            style: textTheme.bodyLarge
-                                ?.copyWith(color: AppColors.primary),
-                          ),
-                          Text(
-                            'Normal',
-                            style: textTheme.bodyMedium
-                                ?.copyWith(color: AppColors.primary),
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            userList
-                                .where((user) =>
-                                    user.membership == MemberStatus.premium)
-                                .length
-                                .toString(),
-                            style: textTheme.bodyLarge
-                                ?.copyWith(color: AppColors.yellow),
-                          ),
-                          Text(
-                            'Premium',
-                            style: textTheme.bodyMedium
-                                ?.copyWith(color: AppColors.yellow),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
-        } else if (state is UserError) {
           return Center(
             child: Text(state.error),
           );

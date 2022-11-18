@@ -1,7 +1,10 @@
+import 'package:arrivo_web/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'post_model.freezed.dart';
 part 'post_model.g.dart';
+
+
 
 @freezed
 class PostModel with _$PostModel {
@@ -12,7 +15,7 @@ class PostModel with _$PostModel {
     required String body,
     required int categoryId,
     required String status,
-    required String label,
+    required MemberStatus label,
     String? createdAt,
     String? updatedAt,
   }) = _PostModel;

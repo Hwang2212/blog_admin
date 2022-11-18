@@ -9,6 +9,21 @@ abstract class PostState extends Equatable {
 
 class PostInitial extends PostState {}
 
+class PostLoading extends PostState {
+  @override
+  List<Object> get props => [];
+}
+
+class PostAdded extends PostState {
+  @override
+  List<Object> get props => [];
+}
+
+class PostRemoved extends PostState {
+  @override
+  List<Object> get props => [];
+}
+
 class PostLoaded extends PostState {
   final List<PostModel> postList;
 
@@ -16,4 +31,12 @@ class PostLoaded extends PostState {
 
   @override
   List<Object> get props => [postList];
+}
+
+class PostError extends PostState {
+  final String error;
+  const PostError(this.error);
+
+  @override
+  List<Object> get props => [error];
 }

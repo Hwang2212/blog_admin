@@ -25,7 +25,7 @@ mixin _$PostModel {
   String get body => throw _privateConstructorUsedError;
   int get categoryId => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
-  String get label => throw _privateConstructorUsedError;
+  MemberStatus get label => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
   String? get updatedAt => throw _privateConstructorUsedError;
 
@@ -46,7 +46,7 @@ abstract class $PostModelCopyWith<$Res> {
       String body,
       int categoryId,
       String status,
-      String label,
+      MemberStatus label,
       String? createdAt,
       String? updatedAt});
 }
@@ -97,7 +97,7 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MemberStatus,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -123,7 +123,7 @@ abstract class _$$_PostModelCopyWith<$Res> implements $PostModelCopyWith<$Res> {
       String body,
       int categoryId,
       String status,
-      String label,
+      MemberStatus label,
       String? createdAt,
       String? updatedAt});
 }
@@ -172,7 +172,7 @@ class __$$_PostModelCopyWithImpl<$Res>
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MemberStatus,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -213,7 +213,7 @@ class _$_PostModel implements _PostModel {
   @override
   final String status;
   @override
-  final String label;
+  final MemberStatus label;
   @override
   final String? createdAt;
   @override
@@ -268,7 +268,7 @@ abstract class _PostModel implements PostModel {
       required final String body,
       required final int categoryId,
       required final String status,
-      required final String label,
+      required final MemberStatus label,
       final String? createdAt,
       final String? updatedAt}) = _$_PostModel;
 
@@ -286,7 +286,7 @@ abstract class _PostModel implements PostModel {
   @override
   String get status;
   @override
-  String get label;
+  MemberStatus get label;
   @override
   String? get createdAt;
   @override

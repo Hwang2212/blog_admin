@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:arrivo_web/utils/src/dropdown_values.dart' as dv;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../theme/theme.dart';
+import '../../../theme/theme.dart';
 
 class CreateUserScreen extends StatefulWidget {
   const CreateUserScreen({super.key});
@@ -30,9 +30,6 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
 
   MemberStatus _member = MemberStatus.normal;
   bool _isValidated = false;
-
-  EdgeInsets formPadding = const EdgeInsets.symmetric(
-      horizontal: AppPadding.p10, vertical: AppPadding.p15);
 
   TextTheme get textTheme => Theme.of(context).textTheme;
   @override
@@ -82,7 +79,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Padding(
-                      padding: formPadding,
+                      padding: ScreenUtils.formPadding,
                       child: AppTextFormField(
                         textEditingController: fullNameTEC,
                         validator: FormValidators.validateName,
@@ -91,7 +88,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                       ),
                     ),
                     Padding(
-                      padding: formPadding,
+                      padding: ScreenUtils.formPadding,
                       child: AppTextFormField(
                         textEditingController: usernameTEC,
                         validator: FormValidators.validateName,
@@ -100,7 +97,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                       ),
                     ),
                     Padding(
-                      padding: formPadding,
+                      padding: ScreenUtils.formPadding,
                       child: AppTextFormField(
                         textEditingController: emailTEC,
                         validator: FormValidators.validateEmail,
@@ -109,7 +106,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                       ),
                     ),
                     Padding(
-                      padding: formPadding,
+                      padding: ScreenUtils.formPadding,
                       child: AppTextFormField(
                         textEditingController: passwordTEC,
                         validator: FormValidators.validatePassword,
@@ -118,7 +115,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                       ),
                     ),
                     Padding(
-                        padding: formPadding,
+                        padding: ScreenUtils.formPadding,
                         child: DropdownButtonFormField(
                             isDense: true,
                             isExpanded: true,

@@ -12,7 +12,7 @@ _$_PostModel _$$_PostModelFromJson(Map<String, dynamic> json) => _$_PostModel(
       body: json['body'] as String,
       categoryId: json['category_id'] as int,
       status: json['status'] as String,
-      label: json['label'] as String,
+      label: $enumDecode(_$MemberStatusEnumMap, json['label']),
       createdAt: json['created_at'] as String?,
       updatedAt: json['updated_at'] as String?,
     );
@@ -24,7 +24,12 @@ Map<String, dynamic> _$$_PostModelToJson(_$_PostModel instance) =>
       'body': instance.body,
       'category_id': instance.categoryId,
       'status': instance.status,
-      'label': instance.label,
+      'label': _$MemberStatusEnumMap[instance.label]!,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
     };
+
+const _$MemberStatusEnumMap = {
+  MemberStatus.normal: 1,
+  MemberStatus.premium: 2,
+};

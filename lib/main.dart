@@ -2,6 +2,7 @@ import 'package:arrivo_web/bloc/auth/auth_bloc.dart';
 import 'package:arrivo_web/bloc/post/post_bloc.dart';
 import 'package:arrivo_web/bloc/user/user_bloc.dart';
 import 'package:arrivo_web/repositories/repositories.dart';
+import 'package:arrivo_web/repositories/src/post_repository.dart';
 import 'package:arrivo_web/services/src/shared_preferences.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +15,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   runApp(EasyLocalization(
-      child: MyApp(),
       supportedLocales: [Locale('en', 'US')],
       fallbackLocale: Locale('en', 'US'),
-      path: '/translations'));
+      path: '/translations',
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,18 +29,20 @@ class MyApp extends StatelessWidget {
     final SharedPreferencesService sharedPreferencesService =
         SharedPreferencesService();
     final UserRepository userRepository = UserRepository();
+    final PostRepository postRepository = PostRepository();
     MaterialApp app = MaterialApp(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: getAppTheme(AppThemes.textTheme),
-      initialRoute: Routes.userScreen,
+      initialRoute: Routes.mainScreen,
       onGenerateRoute: RouteGenerator.onGenerateRoute,
     );
     return MultiBlocProvider(providers: [
       BlocProvider<AuthBloc>(
           create: (context) => AuthBloc(sharedPreferencesService)),
-      BlocProvider<PostBloc>(create: (context) => PostBloc()..add(LoadPost())),
+      BlocProvider<PostBloc>(
+          create: (context) => PostBloc(postRepository)..add(LoadPost())),
       BlocProvider<UserBloc>(
           create: (context) => UserBloc(userRepository)..add(LoadUser())),
     ], child: app);

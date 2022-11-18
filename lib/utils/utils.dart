@@ -5,5 +5,6 @@ export 'src/column_headers.dart';
 export 'src/form_validators.dart';
 export 'src/loading_helper.dart';
 export 'src/constants.dart';
-export 'src/staging_user.dart';
 export 'src/dropdown_values.dart';
+export 'src/staging_user.dart';
+export 'src/staging_posts.dart';

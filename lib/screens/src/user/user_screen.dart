@@ -21,8 +21,6 @@ class _UserScreenState extends State<UserScreen> {
   @override
   void initState() {
     super.initState();
-
-    // BlocProvider.of<UserBloc>(context, listen: false).add(LoadUser());
   }
 
   @override
@@ -145,13 +143,16 @@ class _UserScreenState extends State<UserScreen> {
                       child: Container(
                           margin: ScreenUtils.contentMargin,
                           child: Column(children: [
-                            CircleAvatar(
-                              backgroundColor: userList[index].membership ==
-                                      MemberStatus.premium
-                                  ? AppColors.yellow
-                                  : AppColors.primary,
-                              radius: AppSize.s50,
-                              child: const Icon(Icons.people),
+                            Flexible(
+                              flex: 3,
+                              child: CircleAvatar(
+                                backgroundColor: userList[index].membership ==
+                                        MemberStatus.premium
+                                    ? AppColors.yellow
+                                    : AppColors.primary,
+                                radius: AppSize.s50,
+                                child: const Icon(Icons.people),
+                              ),
                             ),
                             Text(
                               userList[index].fullName,

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:arrivo_web/repositories/src/post_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -8,10 +8,17 @@ part 'post_event.dart';
 part 'post_state.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
-  PostBloc() : super(PostInitial()) {
+  final PostRepository _postRepository;
+  PostBloc(this._postRepository) : super(PostInitial()) {
     on<LoadPost>((event, emit) async {
-      await Future<void>.delayed(const Duration(seconds: 1));
-      emit(const PostLoaded(postList: <PostModel>[]));
+      emit(PostLoading());
+
+      try {
+        final posts = _postRepository.getpostList();
+        emit(PostLoaded(postList: posts));
+      } catch (e) {
+        emit(PostError(e.toString()));
+      }
     });
     on<AddPost>((event, emit) {
       if (state is PostLoaded) {

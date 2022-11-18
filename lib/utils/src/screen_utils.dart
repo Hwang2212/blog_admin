@@ -27,4 +27,6 @@ class ScreenUtils {
 
   static EdgeInsets get contentMargin =>
       EdgeInsets.symmetric(vertical: AppMargin.m50, horizontal: AppMargin.m30);
+  static EdgeInsets get formPadding => const EdgeInsets.symmetric(
+      horizontal: AppPadding.p10, vertical: AppPadding.p15);
 }

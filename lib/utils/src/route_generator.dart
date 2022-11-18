@@ -1,4 +1,6 @@
+import 'package:arrivo_web/models/models.dart';
 import 'package:arrivo_web/screens/screens.dart';
+import 'package:arrivo_web/screens/src/post/post_details.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -6,6 +8,7 @@ class Routes {
   static const homeScreen = '/home';
   static const userScreen = '/user-screen';
   static const postScreen = '/post-screen';
+  static const postDetailScreen = '/post-detail-screen';
   static const categoryScreen = '/category-screen';
   static const addPostScreen = '/create-post-screen';
   static const addUserScreen = '/create-user-screen';
@@ -30,6 +33,9 @@ class RouteGenerator {
         break;
       case Routes.postScreen:
         builder = (_) => const PostScreen();
+        break;
+      case Routes.postDetailScreen:
+        builder = (_) => const PostDetailScreen();
         break;
       case Routes.addPostScreen:
         builder = (_) => const CreatePostScreen();

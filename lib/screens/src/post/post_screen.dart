@@ -89,7 +89,7 @@ class _PostScreenState extends State<PostScreen> {
                                     DataCell(Text(e.id.toString())),
                                     DataCell(Text(e.title)),
                                     DataCell(Text(e.categoryId.toString())),
-                                    DataCell(Text(e.status)),
+                                    DataCell(Text(e.status!)),
                                     DataCell(e.label == MemberStatus.premium
                                         ? const Icon(
                                             Icons.star,

@@ -11,9 +11,10 @@ class PostModel with _$PostModel {
     required int id,
     required String title,
     required String body,
-    required int categoryId,
-    required String status,
-    required MemberStatus label,
+    @JsonKey(name: 'userId') int? userId,
+    int? categoryId,
+    String? status,
+    MemberStatus? label,
     String? createdAt,
     String? updatedAt,
   }) = _PostModel;

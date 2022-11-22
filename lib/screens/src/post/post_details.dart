@@ -69,7 +69,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                           color: Colors.black54,
                           fontStyle: FontStyle.italic),
                     ),
-                    Text(post.status),
+                    Text(post.status!),
                     Text(
                       "Label",
                       style: getLightStyle(

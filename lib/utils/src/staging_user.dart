@@ -5,14 +5,14 @@ class StagingUser {
     UserModel(
         id: 1,
         fullName: "Ali",
-        username: "aliman",
+        username: "user123",
         password: "abc123",
         membership: MemberStatus.normal),
     UserModel(
         id: 2,
         fullName: "Banana",
         username: "bnn",
-        password: "abc123",
+        password: "abc123", 
         membership: MemberStatus.premium),
     UserModel(
         id: 3,

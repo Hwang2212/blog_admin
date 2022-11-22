@@ -25,7 +25,7 @@ class PostRemoved extends PostState {
 }
 
 class PostLoaded extends PostState {
-  final List<PostModel> postList;
+  final Future<List<PostModel>> postList;
 
   const PostLoaded({required this.postList});
 

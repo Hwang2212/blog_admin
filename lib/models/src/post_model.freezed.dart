@@ -23,9 +23,11 @@ mixin _$PostModel {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
-  int get categoryId => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  MemberStatus get label => throw _privateConstructorUsedError;
+  @JsonKey(name: 'userId')
+  int? get userId => throw _privateConstructorUsedError;
+  int? get categoryId => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+  MemberStatus? get label => throw _privateConstructorUsedError;
   String? get createdAt => throw _privateConstructorUsedError;
   String? get updatedAt => throw _privateConstructorUsedError;
 
@@ -44,9 +46,10 @@ abstract class $PostModelCopyWith<$Res> {
       {int id,
       String title,
       String body,
-      int categoryId,
-      String status,
-      MemberStatus label,
+      @JsonKey(name: 'userId') int? userId,
+      int? categoryId,
+      String? status,
+      MemberStatus? label,
       String? createdAt,
       String? updatedAt});
 }
@@ -67,9 +70,10 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
     Object? id = null,
     Object? title = null,
     Object? body = null,
-    Object? categoryId = null,
-    Object? status = null,
-    Object? label = null,
+    Object? userId = freezed,
+    Object? categoryId = freezed,
+    Object? status = freezed,
+    Object? label = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -86,18 +90,22 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
-      categoryId: null == categoryId
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      categoryId: freezed == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
-              as int,
-      status: null == status
+              as int?,
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      label: null == label
+              as String?,
+      label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as MemberStatus,
+              as MemberStatus?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -121,9 +129,10 @@ abstract class _$$_PostModelCopyWith<$Res> implements $PostModelCopyWith<$Res> {
       {int id,
       String title,
       String body,
-      int categoryId,
-      String status,
-      MemberStatus label,
+      @JsonKey(name: 'userId') int? userId,
+      int? categoryId,
+      String? status,
+      MemberStatus? label,
       String? createdAt,
       String? updatedAt});
 }
@@ -142,9 +151,10 @@ class __$$_PostModelCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? body = null,
-    Object? categoryId = null,
-    Object? status = null,
-    Object? label = null,
+    Object? userId = freezed,
+    Object? categoryId = freezed,
+    Object? status = freezed,
+    Object? label = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -161,18 +171,22 @@ class __$$_PostModelCopyWithImpl<$Res>
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
-      categoryId: null == categoryId
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      categoryId: freezed == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
-              as int,
-      status: null == status
+              as int?,
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      label: null == label
+              as String?,
+      label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as MemberStatus,
+              as MemberStatus?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -193,9 +207,10 @@ class _$_PostModel implements _PostModel {
       {required this.id,
       required this.title,
       required this.body,
-      required this.categoryId,
-      required this.status,
-      required this.label,
+      @JsonKey(name: 'userId') this.userId,
+      this.categoryId,
+      this.status,
+      this.label,
       this.createdAt,
       this.updatedAt});
 
@@ -209,11 +224,14 @@ class _$_PostModel implements _PostModel {
   @override
   final String body;
   @override
-  final int categoryId;
+  @JsonKey(name: 'userId')
+  final int? userId;
   @override
-  final String status;
+  final int? categoryId;
   @override
-  final MemberStatus label;
+  final String? status;
+  @override
+  final MemberStatus? label;
   @override
   final String? createdAt;
   @override
@@ -221,7 +239,7 @@ class _$_PostModel implements _PostModel {
 
   @override
   String toString() {
-    return 'PostModel(id: $id, title: $title, body: $body, categoryId: $categoryId, status: $status, label: $label, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'PostModel(id: $id, title: $title, body: $body, userId: $userId, categoryId: $categoryId, status: $status, label: $label, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -232,6 +250,7 @@ class _$_PostModel implements _PostModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.body, body) || other.body == body) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
             (identical(other.status, status) || other.status == status) &&
@@ -244,8 +263,8 @@ class _$_PostModel implements _PostModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, body, categoryId,
-      status, label, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, title, body, userId,
+      categoryId, status, label, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -266,9 +285,10 @@ abstract class _PostModel implements PostModel {
       {required final int id,
       required final String title,
       required final String body,
-      required final int categoryId,
-      required final String status,
-      required final MemberStatus label,
+      @JsonKey(name: 'userId') final int? userId,
+      final int? categoryId,
+      final String? status,
+      final MemberStatus? label,
       final String? createdAt,
       final String? updatedAt}) = _$_PostModel;
 
@@ -282,11 +302,14 @@ abstract class _PostModel implements PostModel {
   @override
   String get body;
   @override
-  int get categoryId;
+  @JsonKey(name: 'userId')
+  int? get userId;
   @override
-  String get status;
+  int? get categoryId;
   @override
-  MemberStatus get label;
+  String? get status;
+  @override
+  MemberStatus? get label;
   @override
   String? get createdAt;
   @override

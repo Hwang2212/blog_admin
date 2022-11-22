@@ -46,6 +46,7 @@ dependencies:
   shared_preferences: ^2.0.15
   html_editor_enhanced: ^2.5.0
   flutter_html: ^2.2.1
+  http: ^0.13.5
 
 
 

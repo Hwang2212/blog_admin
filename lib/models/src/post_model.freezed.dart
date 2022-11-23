@@ -20,9 +20,9 @@ PostModel _$PostModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PostModel {
-  int get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get body => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  String? get body => throw _privateConstructorUsedError;
   @JsonKey(name: 'userId')
   int? get userId => throw _privateConstructorUsedError;
   int? get categoryId => throw _privateConstructorUsedError;
@@ -43,9 +43,9 @@ abstract class $PostModelCopyWith<$Res> {
       _$PostModelCopyWithImpl<$Res, PostModel>;
   @useResult
   $Res call(
-      {int id,
-      String title,
-      String body,
+      {int? id,
+      String? title,
+      String? body,
       @JsonKey(name: 'userId') int? userId,
       int? categoryId,
       String? status,
@@ -67,9 +67,9 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? body = null,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? body = freezed,
     Object? userId = freezed,
     Object? categoryId = freezed,
     Object? status = freezed,
@@ -78,18 +78,18 @@ class _$PostModelCopyWithImpl<$Res, $Val extends PostModel>
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: null == title
+              as int?,
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      body: null == body
+              as String?,
+      body: freezed == body
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -126,9 +126,9 @@ abstract class _$$_PostModelCopyWith<$Res> implements $PostModelCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      String title,
-      String body,
+      {int? id,
+      String? title,
+      String? body,
       @JsonKey(name: 'userId') int? userId,
       int? categoryId,
       String? status,
@@ -148,9 +148,9 @@ class __$$_PostModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? body = null,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? body = freezed,
     Object? userId = freezed,
     Object? categoryId = freezed,
     Object? status = freezed,
@@ -159,18 +159,18 @@ class __$$_PostModelCopyWithImpl<$Res>
     Object? updatedAt = freezed,
   }) {
     return _then(_$_PostModel(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: null == title
+              as int?,
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      body: null == body
+              as String?,
+      body: freezed == body
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -200,13 +200,12 @@ class __$$_PostModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable()
 class _$_PostModel implements _PostModel {
   const _$_PostModel(
-      {required this.id,
-      required this.title,
-      required this.body,
+      {this.id,
+      this.title,
+      this.body,
       @JsonKey(name: 'userId') this.userId,
       this.categoryId,
       this.status,
@@ -218,11 +217,11 @@ class _$_PostModel implements _PostModel {
       _$$_PostModelFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
-  final String title;
+  final String? title;
   @override
-  final String body;
+  final String? body;
   @override
   @JsonKey(name: 'userId')
   final int? userId;
@@ -282,9 +281,9 @@ class _$_PostModel implements _PostModel {
 
 abstract class _PostModel implements PostModel {
   const factory _PostModel(
-      {required final int id,
-      required final String title,
-      required final String body,
+      {final int? id,
+      final String? title,
+      final String? body,
       @JsonKey(name: 'userId') final int? userId,
       final int? categoryId,
       final String? status,
@@ -296,11 +295,11 @@ abstract class _PostModel implements PostModel {
       _$_PostModel.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
-  String get title;
+  String? get title;
   @override
-  String get body;
+  String? get body;
   @override
   @JsonKey(name: 'userId')
   int? get userId;

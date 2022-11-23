@@ -84,10 +84,9 @@ class _PostScreenState extends State<PostScreen> {
                           columns: postColumnHeaders
                               .map((e) => DataColumn(label: Text(e)))
                               .toList(),
-                          rows: postList
-                              .map((e) => DataRow(cells: [
+                          rows: postList.map((e) => DataRow(cells: [
                                     DataCell(Text(e.id.toString())),
-                                    DataCell(Text(e.title)),
+                                    DataCell(Text(e.title!)),
                                     DataCell(Text(e.categoryId.toString())),
                                     DataCell(Text(e.status!)),
                                     DataCell(e.label == MemberStatus.premium

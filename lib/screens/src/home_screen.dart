@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:Blog_web/bloc/bloc.dart';
 import 'package:Blog_web/models/models.dart';
 import 'package:Blog_web/screens/src/post/post_details.dart';
@@ -6,6 +8,7 @@ import 'package:Blog_web/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:Blog_web/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,6 +19,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   TextTheme get textTheme => Theme.of(context).textTheme;
+  PostBloc get postBloc => context.read<PostBloc>();
+
+  @override
+  void initState() {
+    super.initState();
+    // postBloc.
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -192,6 +202,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }
         if (state is PostLoaded) {
           final postList = state.postList;
+          log(postList.toString());
           return Container(
             margin: EdgeInsets.symmetric(
                 vertical: AppMargin.m100, horizontal: AppMargin.m30),
@@ -227,8 +238,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               .toList(),
                           rows: postList
                               .map((e) => DataRow(cells: [
-                                    DataCell(Text(e.id.toString())),
-                                    DataCell(Text(e.title)),
+                                    DataCell(Text(e.userId.toString())),
+                                    DataCell(Text(e.title!)),
                                     DataCell(Text(e.categoryId.toString())),
                                     DataCell(Text(e.status!)),
                                     DataCell(e.label == MemberStatus.premium

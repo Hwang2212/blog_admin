@@ -5,12 +5,12 @@ part 'post_model.freezed.dart';
 part 'post_model.g.dart';
 
 @freezed
+@JsonSerializable(fieldRename: FieldRename.snake)
 class PostModel with _$PostModel {
-  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PostModel({
-    required int id,
-    required String title,
-    required String body,
+    int? id,
+    String? title,
+    String? body,
     @JsonKey(name: 'userId') int? userId,
     int? categoryId,
     String? status,

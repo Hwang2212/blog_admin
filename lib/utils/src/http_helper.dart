@@ -20,6 +20,14 @@ class HttpHelper<T> {
     http.Response response = await http.get(url, headers: _headers);
     return processResponse(response);
   }
+
+  Future<AppResponse<T>> getAsList(Uri url,
+      {Map<String, String>? headers}) async {
+    log("[APIService] getList $url $_headers");
+    http.Response response = await http.get(url, headers: _headers);
+    return processResponse(response, isList: true);
+  }
+
   AppResponse<T> processResponse(http.Response response,
       {bool isList = false}) {
     log("[APIService] response ${response.statusCode} ${response.body}");
@@ -28,7 +36,8 @@ class HttpHelper<T> {
       final dynamic jsonData = json.decode(response.body);
       switch (statusCode) {
         case 200:
-          dynamic data = jsonData is List ? jsonData : jsonData;
+          dynamic data = jsonData;
+          log(data);
           return AppResponse<T>(
               apiResponse: APIResponse.success,
               data: isList ? null : processData(data),
@@ -44,8 +53,7 @@ class HttpHelper<T> {
               apiResponse: APIResponse.authenticationFailure,
               message: jsonData);
         default:
-          String message =
-              kDebugMode ? jsonData : "Something went wrong";
+          String message = kDebugMode ? jsonData : "Something went wrong";
           return AppResponse(
               apiResponse: APIResponse.failure, message: message);
       }
@@ -55,6 +63,7 @@ class HttpHelper<T> {
       return AppResponse(apiResponse: APIResponse.failure, message: message);
     }
   }
+
   T processData(dynamic data) {
     switch (T) {
       case AuthModel:
@@ -67,8 +76,6 @@ class HttpHelper<T> {
   List<T> processDataAsList(dynamic data) {
     List<dynamic> list = data;
     switch (T) {
-      // case ChildModel:
-      //   return list.map((e) => ChildModel.fromJson(e)).toList() as List<T>;
       case PostModel:
         return list.map((e) => PostModel.fromJson(e)).toList() as List<T>;
       case String:
@@ -79,9 +86,8 @@ class HttpHelper<T> {
   }
 }
 
-
-
 enum APIResponse { success, failure, connectionError, authenticationFailure }
+
 class AppResponse<T> {
   final APIResponse apiResponse;
   final String? message;

@@ -45,7 +45,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         children: [
           const AppTitleText(title: "Post Detail"),
           AppCard(
-            title: post.title,
+            title: post.title!,
             actionList: [
               Row(
                 children: [

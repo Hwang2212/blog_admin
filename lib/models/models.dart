@@ -3,3 +3,4 @@ export 'src/user_model.dart';
 export 'src/payment_model.dart';
 export 'src/post_model.dart';
 export 'src/category_model.dart';
+export 'src/comment_model.dart';

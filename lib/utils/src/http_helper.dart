@@ -28,6 +28,22 @@ class HttpHelper<T> {
     return processResponse(response, isList: true);
   }
 
+  Future<AppResponse<T>> post(Uri url,
+      {Object? body, Map<String, String>? headers}) async {
+    log("[APIService] post $url $_headers $body");
+    http.Response response =
+        await http.post(url, headers: _headers, body: body);
+    return processResponse(response);
+  }
+
+  Future<AppResponse<T>> delete(Uri url,
+      {Object? body, Map<String, String>? headers}) async {
+    log("[APIService] delete $url $_headers $body");
+    http.Response response =
+        await http.delete(url, headers: _headers, body: body);
+    return processResponse(response);
+  }
+
   AppResponse<T> processResponse(http.Response response,
       {bool isList = false}) {
     log("[APIService] response ${response.statusCode} ${response.body}");
@@ -37,7 +53,6 @@ class HttpHelper<T> {
       switch (statusCode) {
         case 200:
           dynamic data = jsonData;
-          log(data);
           return AppResponse<T>(
               apiResponse: APIResponse.success,
               data: isList ? null : processData(data),
@@ -78,6 +93,8 @@ class HttpHelper<T> {
     switch (T) {
       case PostModel:
         return list.map((e) => PostModel.fromJson(e)).toList() as List<T>;
+      case CommentModel:
+        return list.map((e) => CommentModel.fromJson(e)).toList() as List<T>;
       case String:
         return list.map((e) => e.toString()).toList() as List<T>;
       default:

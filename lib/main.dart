@@ -4,6 +4,7 @@ import 'package:Blog_web/bloc/post/post_bloc.dart';
 import 'package:Blog_web/bloc/user/user_bloc.dart';
 import 'package:Blog_web/repositories/repositories.dart';
 import 'package:Blog_web/repositories/src/category_repository.dart';
+import 'package:Blog_web/repositories/src/comment_repository.dart';
 import 'package:Blog_web/repositories/src/post_repository.dart';
 import 'package:Blog_web/services/src/shared_preferences.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
     final UserRepository userRepository = UserRepository();
     final CategoryRepository categoryRepository = CategoryRepository();
     final PostRepository postRepository = PostRepository();
+    final CommentRepository commentRepository = CommentRepository();
     MaterialApp app = MaterialApp(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
@@ -51,6 +53,8 @@ class MyApp extends StatelessWidget {
       BlocProvider<CategoryBloc>(
           create: (context) =>
               CategoryBloc(categoryRepository)..add(LoadCategory())),
+      BlocProvider<CommentBloc>(
+          create: (context) => CommentBloc(commentRepository)),
     ], child: app);
   }
 }

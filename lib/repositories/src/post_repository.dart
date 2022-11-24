@@ -14,6 +14,7 @@ class PostRepository {
     AppResponse<PostModel> response = await apiClient.getPosts();
     if (response.apiResponse == APIResponse.success) {
       _postList = response.dataAsList!;
+      log(response.message.toString());
       return postList;
     } else {
       return postList;
@@ -28,18 +29,25 @@ class PostRepository {
   }
 
   Future<void> addPost({required PostModel newPost}) async {
+    Map<String, String> body = {
+      "title": newPost.title!,
+      "body": newPost.body!,
+      "userId": "1"
+    };
     try {
+      AppResponse<PostModel> response = await apiClient.createPost(body);
+
       _postList.add(newPost);
-      log("Post Added $newPost");
+      log("Post Added $newPost ${response.data}");
     } catch (e) {
       throw Exception(e.toString());
     }
   }
 
-  Future<void> removePost({required PostModel Post}) async {
+  Future<void> removePost({required PostModel post}) async {
     try {
-      _postList.remove(Post);
-      log("Post Removed $Post");
+      _postList.remove(post);
+      log("Post Removed $post");
     } catch (e) {
       throw Exception(e.toString());
     }

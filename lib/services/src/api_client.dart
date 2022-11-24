@@ -17,4 +17,20 @@ class APIClient {
     Uri uri = Uri.parse(APIUrl.apiUrl + APIUrl.postUrl);
     return await (HttpHelper<PostModel>(headers: authHeader)).getAsList(uri);
   }
+
+  Future<AppResponse<CommentModel>> getComments(int postId) async {
+    Uri uri = Uri.parse(APIUrl.apiUrl +
+        APIUrl.postUrl +
+        "/${postId.toString()}" +
+        APIUrl.commentsUrl);
+    return await (HttpHelper<CommentModel>(headers: authHeader)).getAsList(uri);
+  }
+
+  Future<AppResponse<PostModel>> createPost(Map<String, String> body) async {
+    Uri uri = Uri.parse(APIUrl.apiUrl + APIUrl.postUrl);
+    return await (HttpHelper<PostModel>(headers: authHeader)).post(
+      uri,
+      body: jsonEncode(body),
+    );
+  }
 }

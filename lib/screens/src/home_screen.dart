@@ -241,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     DataCell(Text(e.userId.toString())),
                                     DataCell(Text(e.title!)),
                                     DataCell(Text(e.categoryId.toString())),
-                                    DataCell(Text(e.status!)),
+                                    DataCell(Text(e.status ?? "")),
                                     DataCell(e.label == MemberStatus.premium
                                         ? const Icon(
                                             Icons.star,
@@ -258,6 +258,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         PostDetailScreen(
                                                           postModel: e,
                                                         )));
+                                            BlocProvider.of<CommentBloc>(
+                                                    context,
+                                                    listen: false)
+                                                .add(LoadComment(e));
                                           },
                                           buttonColor: AppColors.yellow,
                                           child:

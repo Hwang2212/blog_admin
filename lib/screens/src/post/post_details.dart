@@ -104,40 +104,40 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   ],
                 )),
           ),
-          BlocBuilder<CommentBloc, CommentState>(builder: (context, state) {
-            if (state is CommentLoading) {
-              return const ShowLoading();
-            }
-            if (state is CommentLoaded) {
-              List<CommentModel> comments = state.commentList;
-              return Container(
-                height: 300,
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: comments.length,
-                    itemBuilder: (context, index) {
-                      return Column(children: [
-                        Text("Added by"),
-                        Text(
-                          comments[index].name ?? "Name",
-                          style: getBoldStyle(
-                              fontSize: 20, color: AppColors.primary),
-                        ),
-                        Text(
-                          comments[index].body ?? "Body",
-                          style: getMediumStyle(fontSize: 16),
-                        ),
-                        Text(comments[index].email ?? "What"),
-                      ]);
-                    }),
-              );
-            } else if (state is CommentError) {
-              return Center(
-                child: Text(state.error),
-              );
-            }
-            return Container();
-          })
+          // BlocBuilder<CommentBloc, CommentState>(builder: (context, state) {
+          //   if (state is CommentLoading) {
+          //     return const ShowLoading();
+          //   }
+          //   if (state is CommentLoaded) {
+          //     List<CommentModel> comments = state.commentList;
+          //     return Container(
+          //       height: 300,
+          //       child: ListView.builder(
+          //           shrinkWrap: true,
+          //           itemCount: comments.length,
+          //           itemBuilder: (context, index) {
+          //             return Column(children: [
+          //               Text("Added by"),
+          //               Text(
+          //                 comments[index].name ?? "Name",
+          //                 style: getBoldStyle(
+          //                     fontSize: 20, color: AppColors.primary),
+          //               ),
+          //               Text(
+          //                 comments[index].body ?? "Body",
+          //                 style: getMediumStyle(fontSize: 16),
+          //               ),
+          //               Text(comments[index].email ?? "What"),
+          //             ]);
+          //           }),
+          //     );
+          //   } else if (state is CommentError) {
+          //     return Center(
+          //       child: Text(state.error),
+          //     );
+          //   }
+          //   return Container();
+          // })
         ],
       ),
     );

@@ -20,12 +20,13 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         emit(PostError(e.toString()));
       }
     });
-    // on<AddPost>((event, emit) {
-    //   if (state is PostLoaded) {
-    //     final state = this.state as PostLoaded;
-    //     emit(PostLoaded(postList: List.from(state.postList)..add(event.post)));
-    //   }
-    // });
+    on<AddPost>((event, emit) async {
+      final post = await _postRepository.addPost(newPost: event.post);
+      if (state is PostLoaded) {
+        final state = this.state as PostLoaded;
+        emit(PostLoaded(postList: List.from(state.postList)..add(event.post)));
+      }
+    });
     on<RemovePost>((event, emit) {
       if (state is PostLoaded) {
         final state = this.state as PostLoaded;

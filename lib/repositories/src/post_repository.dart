@@ -30,6 +30,7 @@ class PostRepository {
 
   Future<void> addPost({required PostModel newPost}) async {
     Map<String, String> body = {
+      "id": "11",
       "title": newPost.title!,
       "body": newPost.body!,
       "userId": "1"

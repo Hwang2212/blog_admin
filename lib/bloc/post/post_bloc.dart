@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:Blog_web/repositories/src/post_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -27,7 +29,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         emit(PostLoaded(postList: List.from(state.postList)..add(event.post)));
       }
     });
-    on<RemovePost>((event, emit) {
+    on<RemovePost>((event, emit) async {
+      final post = await _postRepository.removePost(post: event.post);
       if (state is PostLoaded) {
         final state = this.state as PostLoaded;
         emit(PostLoaded(

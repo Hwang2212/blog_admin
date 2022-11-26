@@ -33,4 +33,11 @@ class APIClient {
       body: jsonEncode(body),
     );
   }
+
+  Future<AppResponse<PostModel>> deletePost(PostModel post) async {
+    Uri uri = Uri.parse("${APIUrl.apiUrl}${APIUrl.postUrl}/${post.id!}");
+    return await (HttpHelper<PostModel>(headers: authHeader)).delete(
+      uri,
+    );
+  }
 }

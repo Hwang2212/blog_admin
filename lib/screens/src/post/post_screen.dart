@@ -55,7 +55,6 @@ class _PostScreenState extends State<PostScreen> {
                 vertical: AppMargin.m100, horizontal: AppMargin.m30),
             child: Column(
               children: [
-                const AppTitleText(title: "Posts"),
                 AppCard(
                   title: 'Post',
                   actionList: [
@@ -79,18 +78,23 @@ class _PostScreenState extends State<PostScreen> {
                     ),
                   ],
                   child: Center(
-                    child: SizedBox(
+                    child: ClipRRect(
                       child: DataTable(
                           columns: postColumnHeaders
                               .map((e) => DataColumn(label: Text(e)))
                               .toList(),
                           rows: postList
                               .map((e) => DataRow(cells: [
-                                    DataCell(Text(e.id.toString())),
-                                    DataCell(Text(e.title ?? "")),
+                                    DataCell(Text(e.userId.toString())),
+                                    DataCell(Text(e.title!)),
                                     DataCell(Text(e.categoryId.toString())),
-                                    DataCell(Text(e.status!)),
-                                    DataCell(Text(e.label.toString())),
+                                    DataCell(Text(e.status ?? "")),
+                                    DataCell(e.label == MemberStatus.premium
+                                        ? const Icon(
+                                            Icons.star,
+                                            color: AppColors.yellow,
+                                          )
+                                        : const Text("Normal")),
                                     DataCell(Row(
                                       children: [
                                         AppElevatedButton(

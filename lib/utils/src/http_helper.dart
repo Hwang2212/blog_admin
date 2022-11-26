@@ -83,6 +83,8 @@ class HttpHelper<T> {
     switch (T) {
       case AuthModel:
         return AuthModel.fromJson(data) as T;
+      case PostModel:
+        return PostModel.fromJson(data) as T;
       default:
         throw UnimplementedError();
     }

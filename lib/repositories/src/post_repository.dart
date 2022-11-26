@@ -47,6 +47,7 @@ class PostRepository {
 
   Future<void> removePost({required PostModel post}) async {
     try {
+      AppResponse<PostModel> response = await apiClient.deletePost(post);
       _postList.remove(post);
       log("Post Removed $post");
     } catch (e) {
